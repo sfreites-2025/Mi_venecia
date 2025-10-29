@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bienvenido a la Naturaleza</title>
+    <title>Para Ti 💖</title>
     <style>
         * {
             margin: 0;
@@ -12,9 +12,10 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Georgia', 'Times New Roman', serif;
             min-height: 100vh;
             overflow: hidden;
+            background: #000;
         }
 
         /* Fondo con foto real de montañas */
@@ -29,7 +30,7 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            filter: brightness(0.9);
+            animation: backgroundGlow 8s ease-in-out infinite;
         }
 
         .overlay {
@@ -38,12 +39,12 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.1) 100%);
+            background: linear-gradient(45deg, rgba(120, 0, 120, 0.2), rgba(0, 100, 200, 0.2));
             z-index: -1;
         }
 
         /* Contenido principal */
-        .welcome-container {
+        .love-container {
             position: relative;
             z-index: 2;
             min-height: 100vh;
@@ -56,126 +57,100 @@
             padding: 20px;
         }
 
-        .welcome-card {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(15px);
-            border-radius: 25px;
-            padding: 60px 50px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+        .love-letter {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 50px 40px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
             box-shadow: 
-                0 20px 40px rgba(0, 0, 0, 0.3),
+                0 25px 50px rgba(0, 0, 0, 0.5),
                 inset 0 1px 0 rgba(255, 255, 255, 0.2);
             max-width: 600px;
-            animation: cardAppear 2s ease-out;
+            margin: 20px;
+            animation: letterAppear 2.5s ease-out;
         }
 
-        .nature-icon {
-            font-size: 4.5rem;
+        .heart-icon {
+            font-size: 4rem;
             margin-bottom: 25px;
-            animation: iconFloat 3s ease-in-out infinite;
-            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.3));
+            animation: heartbeat 1.5s ease-in-out infinite;
+            filter: drop-shadow(0 5px 15px rgba(255, 0, 100, 0.5));
         }
 
-        h1 {
-            font-size: 3.2rem;
-            margin-bottom: 20px;
-            font-weight: 300;
-            text-shadow: 0 4px 15px rgba(0,0,0,0.4);
-            animation: titleSlideIn 1.5s ease-out;
-        }
-
-        .subtitle {
-            font-size: 1.4rem;
+        .greeting {
+            font-size: 2.2rem;
             margin-bottom: 30px;
-            color: #f0f8ff;
             font-weight: 300;
-            text-shadow: 0 2px 8px rgba(0,0,0,0.3);
-            animation: subtitleFadeIn 2s ease-out 0.5s both;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            animation: slideInDown 1.5s ease-out;
+            background: linear-gradient(45deg, #ff6b6b, #ff8e53, #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        .message {
-            font-size: 1.2rem;
+        .message-container {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            border-left: 3px solid #ff6b6b;
+            animation: messageReveal 3s ease-out;
+        }
+
+        .love-message {
+            font-size: 1.3rem;
             line-height: 1.8;
-            margin-bottom: 40px;
-            color: #e6f3ff;
-            text-shadow: 0 2px 6px rgba(0,0,0,0.3);
-            animation: messageType 3s ease-out 1s both;
+            color: #f8f9fa;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+            font-style: italic;
+            animation: textGlow 4s ease-in-out infinite;
         }
 
         .message-line {
             display: block;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             opacity: 0;
-            animation: lineFadeIn 0.8s ease-out forwards;
+            animation: fadeInUp 1s ease-out forwards;
         }
 
-        .message-line:nth-child(1) { animation-delay: 1.2s; }
-        .message-line:nth-child(2) { animation-delay: 1.8s; }
-        .message-line:nth-child(3) { animation-delay: 2.4s; }
-
-        .enter-btn {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            padding: 18px 45px;
-            font-size: 1.2rem;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.4s ease;
-            box-shadow: 
-                0 10px 30px rgba(0, 0, 0, 0.4),
-                inset 0 1px 0 rgba(255, 255, 255, 0.3);
-            font-weight: 500;
-            letter-spacing: 1px;
-            animation: buttonPulse 2s ease-in-out 3s both;
-            position: relative;
-            overflow: hidden;
+        .signature {
+            font-size: 1.4rem;
+            margin-top: 30px;
+            color: #ffd700;
+            font-weight: bold;
+            text-shadow: 0 2px 10px rgba(255, 215, 0, 0.5);
+            animation: signatureAppear 2s ease-out 3s both;
         }
 
-        .enter-btn:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 
-                0 15px 40px rgba(0, 0, 0, 0.5),
-                inset 0 1px 0 rgba(255, 255, 255, 0.4);
-        }
-
-        .enter-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s;
-        }
-
-        .enter-btn:hover::before {
-            left: 100%;
-        }
-
-        /* Partículas flotantes */
-        .floating-particles {
-            position: absolute;
+        .hearts-falling {
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             pointer-events: none;
+            z-index: 1;
         }
 
-        .particle {
+        .heart {
             position: absolute;
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             opacity: 0;
-            animation: particleFloat 6s ease-in-out infinite;
+            animation: heartFall 8s linear infinite;
         }
 
-        /* Animaciones para el contenido */
-        @keyframes cardAppear {
+        /* Animaciones */
+        @keyframes backgroundGlow {
+            0%, 100% { filter: brightness(0.8) hue-rotate(0deg); }
+            50% { filter: brightness(1) hue-rotate(10deg); }
+        }
+
+        @keyframes letterAppear {
             0% { 
                 opacity: 0;
-                transform: translateY(50px) scale(0.9);
+                transform: translateY(100px) scale(0.8);
             }
             100% { 
                 opacity: 1;
@@ -183,19 +158,28 @@
             }
         }
 
-        @keyframes iconFloat {
-            0%, 100% { 
-                transform: translateY(0px) rotate(0deg); 
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.1); }
+            50% { transform: scale(1); }
+            75% { transform: scale(1.05); }
+        }
+
+        @keyframes slideInDown {
+            0% { 
+                opacity: 0;
+                transform: translateY(-50px);
             }
-            50% { 
-                transform: translateY(-15px) rotate(3deg); 
+            100% { 
+                opacity: 1;
+                transform: translateY(0);
             }
         }
 
-        @keyframes titleSlideIn {
+        @keyframes messageReveal {
             0% { 
                 opacity: 0;
-                transform: translateX(-100px);
+                transform: translateX(-50px);
             }
             100% { 
                 opacity: 1;
@@ -203,7 +187,7 @@
             }
         }
 
-        @keyframes subtitleFadeIn {
+        @keyframes fadeInUp {
             0% { 
                 opacity: 0;
                 transform: translateY(30px);
@@ -214,19 +198,19 @@
             }
         }
 
-        @keyframes messageType {
-            0% { 
-                opacity: 0;
+        @keyframes textGlow {
+            0%, 100% { 
+                text-shadow: 0 2px 8px rgba(0,0,0,0.4);
             }
-            100% { 
-                opacity: 1;
+            50% { 
+                text-shadow: 0 2px 20px rgba(255, 107, 107, 0.6);
             }
         }
 
-        @keyframes lineFadeIn {
+        @keyframes signatureAppear {
             0% { 
                 opacity: 0;
-                transform: translateX(-20px);
+                transform: translateX(50px);
             }
             100% { 
                 opacity: 1;
@@ -234,203 +218,232 @@
             }
         }
 
-        @keyframes buttonPulse {
+        @keyframes heartFall {
             0% { 
-                opacity: 0;
-                transform: scale(0.8);
-            }
-            50% { 
-                transform: scale(1.05);
-            }
-            100% { 
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        @keyframes particleFloat {
-            0% { 
-                transform: translateY(0px) translateX(0px) rotate(0deg);
+                transform: translateY(-100px) rotate(0deg);
                 opacity: 0;
             }
             10% { 
-                opacity: 0.7;
+                opacity: 1;
             }
             90% { 
-                opacity: 0.7;
+                opacity: 1;
             }
             100% { 
-                transform: translateY(-100px) translateX(50px) rotate(180deg);
+                transform: translateY(100vh) rotate(360deg);
                 opacity: 0;
             }
         }
 
-        /* Efecto de brillo en el texto */
-        .glow-text {
-            background: linear-gradient(45deg, #fff, #f0f8ff, #e6f3ff, #fff);
-            background-size: 200% 200%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: textGlow 3s ease-in-out infinite;
+        /* Efectos especiales */
+        .sparkle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: white;
+            border-radius: 50%;
+            animation: sparkleTwinkle 2s ease-in-out infinite;
         }
 
-        @keyframes textGlow {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
+        @keyframes sparkleTwinkle {
+            0%, 100% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1); }
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .welcome-card {
-                padding: 40px 30px;
-                margin: 20px;
-            }
-            
-            h1 {
-                font-size: 2.5rem;
-            }
-            
-            .nature-icon {
-                font-size: 3.5rem;
-            }
+        /* Botón de continuación */
+        .continue-btn {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+            color: white;
+            border: none;
+            padding: 15px 35px;
+            font-size: 1.1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+            animation: buttonPulse 2s ease-in-out 4s both;
+        }
+
+        .continue-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(255, 107, 107, 0.6);
+        }
+
+        @keyframes buttonPulse {
+            0% { opacity: 0; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1); }
         }
     </style>
 </head>
 <body>
-    <!-- Fondo con foto real -->
+    <!-- Fondo con foto real de montañas -->
     <div class="background-image"></div>
     <div class="overlay"></div>
 
-    <!-- Partículas flotantes -->
-    <div class="floating-particles" id="particles"></div>
+    <!-- Corazones cayendo -->
+    <div class="hearts-falling" id="heartsContainer"></div>
 
-    <!-- Contenido de bienvenida -->
-    <div class="welcome-container">
-        <div class="welcome-card">
-            <div class="nature-icon">🏔️</div>
-            <h1 class="glow-text">Bienvenido</h1>
-            <p class="subtitle">A un lugar de paz y armonía</p>
-            <div class="message">
-                <span class="message-line">Donde las montañas se encuentran con el cielo</span>
-                <span class="message-line">y la naturaleza susurra su sabiduría</span>
-                <span class="message-line">Respira, siente, y déjate llevar</span>
+    <!-- Contenido principal -->
+    <div class="love-container">
+        <div class="love-letter">
+            <div class="heart-icon">💖</div>
+            <h1 class="greeting">Para Ti, Mi Amor</h1>
+            
+            <div class="message-container">
+                <div class="love-message">
+                    <span class="message-line" style="animation-delay: 1s;">
+                        "Esto es algo que te quiero entregar a ti,
+                    </span>
+                    <span class="message-line" style="animation-delay: 1.8s;">
+                        para que lo tengas por siempre y sepas
+                    </span>
+                    <span class="message-line" style="animation-delay: 2.6s;">
+                        que mis sentimientos no son de cartón ni de papel.
+                    </span>
+                    <span class="message-line" style="animation-delay: 3.4s;">
+                        Están estructurados por pilares fuertes
+                    </span>
+                    <span class="message-line" style="animation-delay: 4.2s;">
+                        y bases robustas, para expresarte cada día,
+                    </span>
+                    <span class="message-line" style="animation-delay: 5s;">
+                        lo mucho que te quiero."
+                    </span>
+                </div>
             </div>
-            <button class="enter-btn" onclick="enterExperience()">
-                Comenzar Experiencia ↓
+
+            <div class="signature">
+                Con todo mi corazón 💕
+            </div>
+
+            <button class="continue-btn" onclick="continueJourney()">
+                Nuestro Viaje Continúa →
             </button>
         </div>
     </div>
 
     <script>
-        // Crear partículas flotantes
-        function createParticles() {
-            const particlesContainer = document.getElementById('particles');
-            const particles = ['✨', '🌟', '⭐', '💫', '🌙', '☀️', '🌤️'];
-            const particleCount = 12;
+        // Crear corazones cayendo
+        function createHearts() {
+            const heartsContainer = document.getElementById('heartsContainer');
+            const heartCount = 15;
             
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.innerHTML = particles[Math.floor(Math.random() * particles.length)];
+            for (let i = 0; i < heartCount; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.innerHTML = '💖';
                 
                 const left = Math.random() * 100;
-                const delay = Math.random() * 6;
-                const duration = Math.random() * 4 + 4;
-                const size = Math.random() * 0.5 + 1;
+                const delay = Math.random() * 8;
+                const duration = Math.random() * 4 + 6;
+                const size = Math.random() * 0.8 + 0.7;
                 
-                particle.style.left = `${left}%`;
-                particle.style.top = `${Math.random() * 100 + 100}%`;
-                particle.style.animationDelay = `${delay}s`;
-                particle.style.animationDuration = `${duration}s`;
-                particle.style.fontSize = `${size}rem`;
+                heart.style.left = `${left}%`;
+                heart.style.animationDelay = `${delay}s`;
+                heart.style.animationDuration = `${duration}s`;
+                heart.style.fontSize = `${size}rem`;
                 
-                particlesContainer.appendChild(particle);
+                heartsContainer.appendChild(heart);
+            }
+        }
+
+        // Crear efecto de brillo
+        function createSparkles() {
+            const container = document.querySelector('.love-letter');
+            const sparkleCount = 8;
+            
+            for (let i = 0; i < sparkleCount; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                
+                const left = Math.random() * 100;
+                const top = Math.random() * 100;
+                const delay = Math.random() * 2;
+                const duration = Math.random() * 1 + 1;
+                
+                sparkle.style.left = `${left}%`;
+                sparkle.style.top = `${top}%`;
+                sparkle.style.animationDelay = `${delay}s`;
+                sparkle.style.animationDuration = `${duration}s`;
+                
+                container.appendChild(sparkle);
             }
         }
 
         // Efecto al hacer clic en el botón
-        function enterExperience() {
-            const btn = document.querySelector('.enter-btn');
-            const card = document.querySelector('.welcome-card');
+        function continueJourney() {
+            const btn = document.querySelector('.continue-btn');
+            const letter = document.querySelector('.love-letter');
             
             // Efecto de clic
             btn.style.transform = 'scale(0.95)';
-            btn.style.animation = 'none';
             
-            // Crear efecto de desvanecimiento elegante
-            card.style.animation = 'cardAppear 1s ease-out reverse';
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(-50px) scale(0.9)';
+            // Crear explosión de corazones
+            createHeartExplosion();
             
-            // Agregar partículas extra al hacer clic
-            createClickParticles();
+            // Efecto de desvanecimiento
+            letter.style.transition = 'all 1.5s ease';
+            letter.style.opacity = '0';
+            letter.style.transform = 'translateY(-50px) scale(0.9)';
             
-            // Redirigir después de la animación
             setTimeout(() => {
-                alert('¡Bienvenido! En una página real, aquí navegarías al contenido principal.');
-                // window.location.href = 'main.html';
-            }, 1200);
+                alert('💝 Este es solo el comienzo de todo lo que siento por ti...');
+                // Aquí podrías redirigir a otra página: window.location.href = 'siguiente-pagina.html';
+            }, 1500);
         }
 
-        // Partículas especiales al hacer clic
-        function createClickParticles() {
-            const particlesContainer = document.getElementById('particles');
-            const burstParticles = ['🎯', '🚀', '💥', '🌈', '🎉', '⭐', '✨'];
+        // Explosión de corazones al hacer clic
+        function createHeartExplosion() {
+            const heartsContainer = document.getElementById('heartsContainer');
+            const heartTypes = ['💖', '💕', '💗', '💓', '💘', '💝'];
             
-            for (let i = 0; i < 8; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.innerHTML = burstParticles[Math.floor(Math.random() * burstParticles.length)];
-                particle.style.animation = 'particleFloat 2s ease-out forwards';
+            for (let i = 0; i < 20; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.innerHTML = heartTypes[Math.floor(Math.random() * heartTypes.length)];
+                heart.style.animation = `heartFall 3s ease-out forwards`;
+                heart.style.left = '50%';
+                heart.style.top = '50%';
+                heart.style.fontSize = `${Math.random() * 1 + 1}rem`;
                 
-                const angle = (i / 8) * Math.PI * 2;
-                const distance = 100;
+                heartsContainer.appendChild(heart);
                 
-                particle.style.left = '50%';
-                particle.style.top = '50%';
-                particle.style.fontSize = '2rem';
-                particle.style.opacity = '1';
-                
-                particlesContainer.appendChild(particle);
-                
-                // Remover después de la animación
                 setTimeout(() => {
-                    particle.remove();
-                }, 2000);
+                    heart.remove();
+                }, 3000);
             }
         }
 
-        // Efecto de parallax suave con el mouse
-        document.addEventListener('mousemove', (e) => {
-            const x = (e.clientX / window.innerWidth - 0.5) * 20;
-            const y = (e.clientY / window.innerHeight - 0.5) * 10;
-            
-            const card = document.querySelector('.welcome-card');
-            card.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
-        });
-
-        // Inicializar cuando carga la página
-        document.addEventListener('DOMContentLoaded', function() {
-            createParticles();
-            
-            // Efecto de sonido ambiental (simulado)
-            console.log('🎵 Sonidos de naturaleza cargados...');
-        });
-
-        // Efecto de respiración para el card
-        function breathingEffect() {
-            const card = document.querySelector('.welcome-card');
-            setInterval(() => {
-                card.style.transform = 'scale(1.02)';
-                setTimeout(() => {
-                    card.style.transform = 'scale(1)';
-                }, 1000);
-            }, 4000);
+        // Efecto de música romántica (simulado)
+        function playRomanticMusic() {
+            console.log('🎵 Suena música romántica de fondo...');
         }
 
-        // Iniciar efecto de respiración después de un tiempo
-        setTimeout(breathingEffect, 5000);
+        // Inicializar efectos cuando carga la página
+        document.addEventListener('DOMContentLoaded', function() {
+            createHearts();
+            createSparkles();
+            playRomanticMusic();
+            
+            // Efecto de latido del corazón cada cierto tiempo
+            setInterval(() => {
+                const heart = document.querySelector('.heart-icon');
+                heart.style.animation = 'none';
+                setTimeout(() => {
+                    heart.style.animation = 'heartbeat 1.5s ease-in-out infinite';
+                }, 10);
+            }, 5000);
+        });
+
+        // Efecto de movimiento suave con el mouse
+        document.addEventListener('mousemove', (e) => {
+            const x = (e.clientX / window.innerWidth - 0.5) * 10;
+            const y = (e.clientY / window.innerHeight - 0.5) * 10;
+            
+            const letter = document.querySelector('.love-letter');
+            letter.style.transform = `translate(${x}px, ${y}px)`;
+        });
     </script>
 </body>
 </html>
