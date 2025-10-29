@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para Venecia - Un Sueño Hecho Realidad</title>
+    <title>Bienvenida Venecia</title>
     <style>
         * {
             margin: 0;
@@ -12,287 +12,376 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Playfair Display', serif;
             min-height: 100vh;
+            overflow: hidden;
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            position: relative;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
+        /* Fondo animado con canales venecianos */
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .water {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 40%;
+            background: linear-gradient(to top, #4a90e2, #6ba8e5);
+            animation: waterFlow 8s ease-in-out infinite;
+        }
+
+        .wave {
+            position: absolute;
+            bottom: 40%;
+            width: 200%;
+            height: 50px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" fill="%234a90e2"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" fill="%234a90e2"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" fill="%234a90e2"/></svg>');
+            animation: waveMove 15s linear infinite;
+            opacity: 0.6;
+        }
+
+        .buildings {
+            position: absolute;
+            bottom: 40%;
+            width: 100%;
+            height: 60%;
+            background: linear-gradient(45deg, 
+                #8B4513 0%, 
+                #A0522D 20%, 
+                #CD853F 40%, 
+                #D2B48C 60%, 
+                #F5DEB3 80%, 
+                #FFF8DC 100%);
+            clip-path: polygon(
+                0% 100%, 5% 80%, 10% 90%, 15% 70%, 20% 85%,
+                25% 60%, 30% 75%, 35% 55%, 40% 70%, 45% 50%,
+                50% 65%, 55% 45%, 60% 60%, 65% 40%, 70% 55%,
+                75% 35%, 80% 50%, 85% 30%, 90% 45%, 95% 25%, 100% 40%,
+                100% 100%, 0% 100%
+            );
+        }
+
+        .gondola {
+            position: absolute;
+            bottom: 45%;
+            left: -100px;
+            font-size: 4rem;
+            animation: gondolaFloat 20s linear infinite;
+            filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5));
+        }
+
+        /* Contenido principal */
+        .welcome-container {
+            position: relative;
+            z-index: 2;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
             padding: 20px;
         }
 
-        /* Header */
-        header {
-            background: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
-            border-radius: 15px;
-            margin-bottom: 30px;
-            padding: 30px;
-            text-align: center;
+        .welcome-message {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 50px 40px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            max-width: 600px;
+            animation: messageAppear 2s ease-out;
         }
 
-        .logo {
-            font-size: 3rem;
-            margin-bottom: 10px;
+        .venice-icon {
+            font-size: 5rem;
+            margin-bottom: 20px;
+            animation: float 3s ease-in-out infinite;
+            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.3));
         }
 
         h1 {
-            color: #2c3e50;
-            font-size: 2.5rem;
-            margin-bottom: 10px;
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #fff, #f0f8ff, #e6f3ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            animation: titleGlow 2s ease-in-out infinite alternate;
         }
 
         .subtitle {
-            color: #7f8c8d;
-            font-size: 1.2rem;
-            margin-bottom: 20px;
-        }
-
-        /* Hero Section */
-        .hero {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 15px;
-            padding: 50px;
-            text-align: center;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-        }
-
-        .hero h2 {
-            color: #2c3e50;
-            font-size: 2.2rem;
-            margin-bottom: 20px;
-        }
-
-        .hero p {
-            font-size: 1.1rem;
-            color: #555;
-            margin-bottom: 30px;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .btn {
-            display: inline-block;
-            background: linear-gradient(45deg, #e74c3c, #e67e22);
-            color: white;
-            padding: 15px 35px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1.1rem;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 4px 15px rgba(230, 126, 34, 0.3);
-        }
-
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(230, 126, 34, 0.4);
-        }
-
-        /* Features */
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-bottom: 30px;
-        }
-
-        .feature-card {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 30px;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            color: #3498db;
-        }
-
-        .feature-card h3 {
-            color: #2c3e50;
-            margin-bottom: 15px;
             font-size: 1.4rem;
-        }
-
-        /* Gallery */
-        .gallery {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 15px;
-            padding: 40px;
             margin-bottom: 30px;
+            color: #f0f8ff;
+            font-weight: 300;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.3);
         }
 
-        .gallery h2 {
-            text-align: center;
-            color: #2c3e50;
-            margin-bottom: 30px;
-            font-size: 2rem;
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-
-        .gallery-item {
-            background: linear-gradient(45deg, #3498db, #9b59b6);
-            height: 200px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
+        .message {
             font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 40px;
+            color: #e6f3ff;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
         }
 
-        /* Footer */
-        footer {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 15px;
-            padding: 30px;
-            text-align: center;
-            color: #7f8c8d;
+        .enter-btn {
+            background: linear-gradient(45deg, #ff6b6b, #ff8e53);
+            color: white;
+            border: none;
+            padding: 18px 45px;
+            font-size: 1.3rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 
+                0 10px 30px rgba(255, 107, 107, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            letter-spacing: 1px;
+            animation: pulse 2s infinite;
         }
 
-        .social-links {
-            margin: 20px 0;
+        .enter-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 
+                0 15px 40px rgba(255, 107, 107, 0.6),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4);
         }
 
-        .social-links a {
-            color: #3498db;
-            text-decoration: none;
-            margin: 0 15px;
-            font-size: 1.1rem;
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .container {
-                padding: 15px;
+        .floating-element {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.7;
+            animation: floatRandom 8s ease-in-out infinite;
+        }
+
+        /* Animaciones */
+        @keyframes waterFlow {
+            0%, 100% { transform: scaleY(1); }
+            50% { transform: scaleY(1.05); }
+        }
+
+        @keyframes waveMove {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        @keyframes gondolaFloat {
+            0% { transform: translateX(-100px) rotate(0deg); }
+            100% { transform: translateX(calc(100vw + 100px)) rotate(5deg); }
+        }
+
+        @keyframes messageAppear {
+            0% { 
+                opacity: 0;
+                transform: translateY(50px) scale(0.8);
             }
-            
-            header, .hero, .feature-card, .gallery, footer {
-                padding: 25px;
+            100% { 
+                opacity: 1;
+                transform: translateY(0) scale(1);
             }
-            
-            h1 {
-                font-size: 2rem;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes titleGlow {
+            0% { filter: drop-shadow(0 0 10px rgba(255,255,255,0.3)); }
+            100% { filter: drop-shadow(0 0 20px rgba(255,255,255,0.6)); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes floatRandom {
+            0%, 100% { 
+                transform: translate(0, 0) rotate(0deg); 
             }
-            
-            .hero h2 {
-                font-size: 1.8rem;
+            25% { 
+                transform: translate(10px, -15px) rotate(5deg); 
+            }
+            50% { 
+                transform: translate(-5px, -25px) rotate(-5deg); 
+            }
+            75% { 
+                transform: translate(15px, -10px) rotate(3deg); 
+            }
+        }
+
+        /* Efectos de partículas */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            animation: particleFloat 6s ease-in-out infinite;
+        }
+
+        @keyframes particleFloat {
+            0%, 100% { 
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+            10%, 90% { 
+                opacity: 1;
+            }
+            50% { 
+                transform: translateY(-100px) rotate(180deg);
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Header -->
-        <header>
-            <div class="logo">🇮🇹</div>
-            <h1>Para Venecia</h1>
-            <p class="subtitle">Descubre la magia de la ciudad flotante</p>
-        </header>
+    <!-- Fondo animado -->
+    <div class="background">
+        <div class="water"></div>
+        <div class="wave"></div>
+        <div class="buildings"></div>
+        <div class="gondola">🛶</div>
+        <div class="particles" id="particles"></div>
+    </div>
 
-        <!-- Hero Section -->
-        <section class="hero">
-            <h2>Bienvenido a la Experiencia Veneciana</h2>
-            <p>Sumérgete en el encanto único de Venecia, donde los canales reemplazan a las calles y cada rincón cuenta una historia centenaria. Descubre la magia de esta joya italiana con nosotros.</p>
-            <a href="#explorar" class="btn">Comenzar el Viaje</a>
-        </section>
+    <!-- Elementos flotantes -->
+    <div class="floating-elements">
+        <div class="floating-element" style="top: 20%; left: 10%; animation-delay: 0s;">🏛️</div>
+        <div class="floating-element" style="top: 15%; right: 15%; animation-delay: 1s;">🎭</div>
+        <div class="floating-element" style="top: 60%; left: 20%; animation-delay: 2s;">🌅</div>
+        <div class="floating-element" style="top: 70%; right: 10%; animation-delay: 3s;">🍝</div>
+    </div>
 
-        <!-- Features -->
-        <section class="features">
-            <div class="feature-card">
-                <div class="feature-icon">🚤</div>
-                <h3>Paseos en Góndola</h3>
-                <p>Vive la experiencia única de navegar por los canales venecianos en una auténtica góndola.</p>
+    <!-- Contenido de bienvenida -->
+    <div class="welcome-container">
+        <div class="welcome-message">
+            <div class="venice-icon">🇮🇹</div>
+            <h1>Bienvenido a Venecia</h1>
+            <p class="subtitle">La ciudad flotante te espera</p>
+            <div class="message">
+                Donde los canales susurran historias centenarias<br>
+                y cada puente es un portal al pasado.<br>
+                Prepárate para vivir la magia veneciana.
             </div>
-            
-            <div class="feature-card">
-                <div class="feature-icon">🏛️</div>
-                <h3>Arquitectura Única</h3>
-                <p>Admira los palacios y edificios históricos que hacen de Venecia una ciudad incomparable.</p>
-            </div>
-            
-            <div class="feature-card">
-                <div class="feature-icon">🍝</div>
-                <h3>Gastronomía Local</h3>
-                <p>Prueba los sabores auténticos de la cocina veneciana en restaurantes con encanto.</p>
-            </div>
-        </section>
-
-        <!-- Gallery -->
-        <section class="gallery">
-            <h2>Galería Veneciana</h2>
-            <div class="gallery-grid">
-                <div class="gallery-item">Puente de Rialto</div>
-                <div class="gallery-item">Plaza San Marcos</div>
-                <div class="gallery-item">Carnaval de Venecia</div>
-                <div class="gallery-item">Atardecer en los Canales</div>
-            </div>
-        </section>
-
-        <!-- Footer -->
-        <footer>
-            <p>© 2025 Para Venecia - Todos los derechos reservados</p>
-            <div class="social-links">
-                <a href="#">📘 Facebook</a>
-                <a href="#">📷 Instagram</a>
-                <a href="#">🐦 Twitter</a>
-            </div>
-            <p>Diseñado con ❤️ para amantes de Venecia</p>
-        </footer>
+            <button class="enter-btn" onclick="enterVenice()">
+                Descubre la Magia →
+            </button>
+        </div>
     </div>
 
     <script>
-        // Efecto de scroll suave
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
+        // Crear partículas dinámicas
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                // Posición y tamaño aleatorio
+                const size = Math.random() * 4 + 1;
+                const left = Math.random() * 100;
+                const delay = Math.random() * 6;
+                const duration = Math.random() * 4 + 4;
+                
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${left}%`;
+                particle.style.animationDelay = `${delay}s`;
+                particle.style.animationDuration = `${duration}s`;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Efecto al hacer clic en el botón
+        function enterVenice() {
+            const btn = document.querySelector('.enter-btn');
+            const message = document.querySelector('.welcome-message');
+            
+            // Efecto de pulsación
+            btn.style.transform = 'scale(0.95)';
+            btn.style.animation = 'none';
+            
+            // Efecto de desvanecimiento
+            message.style.animation = 'messageAppear 2s ease-out reverse';
+            message.style.opacity = '0';
+            
+            // Redirigir después de la animación
+            setTimeout(() => {
+                alert('¡Bienvenido a Venecia! En una página real, aquí navegarías al contenido principal.');
+                // window.location.href = 'main.html'; // Para redirigir a otra página
+            }, 1000);
+        }
+
+        // Inicializar efectos cuando carga la página
+        document.addEventListener('DOMContentLoaded', function() {
+            createParticles();
+            
+            // Efecto de escritura para el mensaje
+            const message = document.querySelector('.message');
+            const originalText = message.innerHTML;
+            message.innerHTML = '';
+            
+            let i = 0;
+            function typeWriter() {
+                if (i < originalText.length) {
+                    message.innerHTML += originalText.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 50);
+                }
+            }
+            
+            // Iniciar escritura después de un delay
+            setTimeout(typeWriter, 1000);
         });
 
-        // Animación de elementos al hacer scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        // Aplicar animación a las tarjetas
-        document.querySelectorAll('.feature-card, .gallery-item').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(20px)';
-            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(el);
+        // Efecto de movimiento con el mouse
+        document.addEventListener('mousemove', function(e) {
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            const water = document.querySelector('.water');
+            const message = document.querySelector('.welcome-message');
+            
+            water.style.transform = `scaleY(${1 + y * 0.05})`;
+            message.style.transform = `translate(${(x - 0.5) * 10}px, ${(y - 0.5) * 10}px)`;
         });
     </script>
 </body>
