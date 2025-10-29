@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bienvenida Venecia</title>
+    <title>Bienvenido a la Aventura</title>
     <style>
         * {
             margin: 0;
@@ -12,71 +12,99 @@
         }
 
         body {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Arial', sans-serif;
             min-height: 100vh;
             overflow: hidden;
-            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            background: linear-gradient(180deg, #87CEEB 0%, #98FB98 100%);
             position: relative;
         }
 
-        /* Fondo animado con canales venecianos */
-        .background {
+        /* Fondo de montañas */
+        .mountain-background {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             z-index: -1;
-            overflow: hidden;
         }
 
-        .water {
+        .sky {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 70%;
+            background: linear-gradient(180deg, #87CEEB 0%, #B0E2FF 100%);
+        }
+
+        .mountains-far {
+            position: absolute;
+            bottom: 30%;
+            width: 100%;
+            height: 40%;
+            background: linear-gradient(180deg, #2F4F4F 0%, #696969 100%);
+            clip-path: polygon(
+                0% 100%, 10% 70%, 20% 80%, 30% 60%, 40% 75%,
+                50% 55%, 60% 70%, 70% 50%, 80% 65%, 90% 45%, 100% 60%,
+                100% 100%, 0% 100%
+            );
+            opacity: 0.6;
+            animation: mountainFloat 20s ease-in-out infinite;
+        }
+
+        .mountains-near {
+            position: absolute;
+            bottom: 25%;
+            width: 100%;
+            height: 50%;
+            background: linear-gradient(180deg, #228B22 0%, #006400 100%);
+            clip-path: polygon(
+                0% 100%, 5% 80%, 15% 90%, 25% 75%, 35% 85%,
+                45% 70%, 55% 80%, 65% 65%, 75% 75%, 85% 60%, 95% 70%, 100% 65%,
+                100% 100%, 0% 100%
+            );
+            animation: mountainFloat 15s ease-in-out infinite reverse;
+        }
+
+        .ground {
             position: absolute;
             bottom: 0;
             width: 100%;
-            height: 40%;
-            background: linear-gradient(to top, #4a90e2, #6ba8e5);
-            animation: waterFlow 8s ease-in-out infinite;
+            height: 25%;
+            background: linear-gradient(180deg, #8FBC8F 0%, #556B2F 100%);
         }
 
-        .wave {
+        /* Nubes animadas */
+        .cloud {
             position: absolute;
-            bottom: 40%;
-            width: 200%;
-            height: 50px;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" fill="%234a90e2"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" fill="%234a90e2"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" fill="%234a90e2"/></svg>');
-            animation: waveMove 15s linear infinite;
-            opacity: 0.6;
+            background: white;
+            border-radius: 50px;
+            opacity: 0.9;
+            animation: cloudFloat 30s linear infinite;
         }
 
-        .buildings {
-            position: absolute;
-            bottom: 40%;
-            width: 100%;
-            height: 60%;
-            background: linear-gradient(45deg, 
-                #8B4513 0%, 
-                #A0522D 20%, 
-                #CD853F 40%, 
-                #D2B48C 60%, 
-                #F5DEB3 80%, 
-                #FFF8DC 100%);
-            clip-path: polygon(
-                0% 100%, 5% 80%, 10% 90%, 15% 70%, 20% 85%,
-                25% 60%, 30% 75%, 35% 55%, 40% 70%, 45% 50%,
-                50% 65%, 55% 45%, 60% 60%, 65% 40%, 70% 55%,
-                75% 35%, 80% 50%, 85% 30%, 90% 45%, 95% 25%, 100% 40%,
-                100% 100%, 0% 100%
-            );
+        .cloud-1 {
+            top: 20%;
+            width: 120px;
+            height: 40px;
+            animation-delay: 0s;
+            animation-duration: 40s;
         }
 
-        .gondola {
-            position: absolute;
-            bottom: 45%;
-            left: -100px;
-            font-size: 4rem;
-            animation: gondolaFloat 20s linear infinite;
-            filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5));
+        .cloud-2 {
+            top: 30%;
+            width: 80px;
+            height: 30px;
+            animation-delay: 5s;
+            animation-duration: 35s;
+        }
+
+        .cloud-3 {
+            top: 15%;
+            width: 100px;
+            height: 35px;
+            animation-delay: 10s;
+            animation-duration: 45s;
         }
 
         /* Contenido principal */
@@ -89,83 +117,78 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            color: white;
+            color: #2F4F4F;
             padding: 20px;
         }
 
-        .welcome-message {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(20px);
-            border-radius: 25px;
+        .welcome-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
             padding: 50px 40px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
             box-shadow: 
-                0 20px 40px rgba(0, 0, 0, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.2);
-            max-width: 600px;
-            animation: messageAppear 2s ease-out;
+                0 15px 35px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            max-width: 500px;
+            animation: cardAppear 2s ease-out;
         }
 
-        .venice-icon {
-            font-size: 5rem;
+        .nature-icon {
+            font-size: 4rem;
             margin-bottom: 20px;
-            animation: float 3s ease-in-out infinite;
-            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.3));
+            animation: gentleFloat 4s ease-in-out infinite;
+            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.1));
         }
 
         h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            background: linear-gradient(45deg, #fff, #f0f8ff, #e6f3ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
-            animation: titleGlow 2s ease-in-out infinite alternate;
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            color: #2F4F4F;
+            font-weight: 300;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
         .subtitle {
-            font-size: 1.4rem;
-            margin-bottom: 30px;
-            color: #f0f8ff;
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            color: #696969;
             font-weight: 300;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.3);
         }
 
         .message {
-            font-size: 1.2rem;
-            line-height: 1.8;
-            margin-bottom: 40px;
-            color: #e6f3ff;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 35px;
+            color: #556B2F;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.05);
         }
 
         .enter-btn {
-            background: linear-gradient(45deg, #ff6b6b, #ff8e53);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             border: none;
-            padding: 18px 45px;
-            font-size: 1.3rem;
-            border-radius: 50px;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            border-radius: 25px;
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 
-                0 10px 30px rgba(255, 107, 107, 0.4),
+                0 8px 25px rgba(102, 126, 234, 0.3),
                 inset 0 1px 0 rgba(255, 255, 255, 0.3);
-            font-family: 'Playfair Display', serif;
-            font-weight: 600;
-            letter-spacing: 1px;
-            animation: pulse 2s infinite;
+            font-weight: 400;
+            letter-spacing: 0.5px;
         }
 
         .enter-btn:hover {
-            transform: translateY(-3px) scale(1.05);
+            transform: translateY(-2px);
             box-shadow: 
-                0 15px 40px rgba(255, 107, 107, 0.6),
+                0 12px 30px rgba(102, 126, 234, 0.4),
                 inset 0 1px 0 rgba(255, 255, 255, 0.4);
         }
 
-        .floating-elements {
+        /* Elementos naturales flotantes */
+        .floating-nature {
             position: absolute;
             top: 0;
             left: 0;
@@ -174,33 +197,28 @@
             pointer-events: none;
         }
 
-        .floating-element {
+        .nature-element {
             position: absolute;
-            font-size: 2rem;
-            opacity: 0.7;
-            animation: floatRandom 8s ease-in-out infinite;
+            font-size: 1.5rem;
+            opacity: 0.6;
+            animation: natureFloat 8s ease-in-out infinite;
         }
 
-        /* Animaciones */
-        @keyframes waterFlow {
-            0%, 100% { transform: scaleY(1); }
-            50% { transform: scaleY(1.05); }
+        /* Animaciones suaves */
+        @keyframes mountainFloat {
+            0%, 100% { transform: translateX(0px); }
+            50% { transform: translateX(10px); }
         }
 
-        @keyframes waveMove {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+        @keyframes cloudFloat {
+            0% { transform: translateX(-100px); }
+            100% { transform: translateX(calc(100vw + 100px)); }
         }
 
-        @keyframes gondolaFloat {
-            0% { transform: translateX(-100px) rotate(0deg); }
-            100% { transform: translateX(calc(100vw + 100px)) rotate(5deg); }
-        }
-
-        @keyframes messageAppear {
+        @keyframes cardAppear {
             0% { 
                 opacity: 0;
-                transform: translateY(50px) scale(0.8);
+                transform: translateY(30px) scale(0.95);
             }
             100% { 
                 opacity: 1;
@@ -208,153 +226,198 @@
             }
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
+        @keyframes gentleFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(2deg); }
         }
 
-        @keyframes titleGlow {
-            0% { filter: drop-shadow(0 0 10px rgba(255,255,255,0.3)); }
-            100% { filter: drop-shadow(0 0 20px rgba(255,255,255,0.6)); }
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-
-        @keyframes floatRandom {
+        @keyframes natureFloat {
             0%, 100% { 
                 transform: translate(0, 0) rotate(0deg); 
+                opacity: 0.4;
             }
             25% { 
-                transform: translate(10px, -15px) rotate(5deg); 
+                transform: translate(5px, -8px) rotate(2deg); 
+                opacity: 0.6;
             }
             50% { 
-                transform: translate(-5px, -25px) rotate(-5deg); 
+                transform: translate(-3px, -12px) rotate(-1deg); 
+                opacity: 0.5;
             }
             75% { 
-                transform: translate(15px, -10px) rotate(3deg); 
+                transform: translate(8px, -6px) rotate(1deg); 
+                opacity: 0.7;
             }
         }
 
-        /* Efectos de partículas */
-        .particles {
+        /* Pájaros volando */
+        .bird {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
+            font-size: 1.2rem;
+            animation: birdFly 20s linear infinite;
         }
 
-        .particle {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.8);
-            border-radius: 50%;
-            animation: particleFloat 6s ease-in-out infinite;
-        }
-
-        @keyframes particleFloat {
-            0%, 100% { 
-                transform: translateY(0) rotate(0deg);
-                opacity: 0;
+        @keyframes birdFly {
+            0% { 
+                transform: translateX(-50px) translateY(0px); 
             }
-            10%, 90% { 
-                opacity: 1;
+            25% { 
+                transform: translateX(25vw) translateY(-20px); 
             }
             50% { 
-                transform: translateY(-100px) rotate(180deg);
+                transform: translateX(50vw) translateY(0px); 
+            }
+            75% { 
+                transform: translateX(75vw) translateY(-15px); 
+            }
+            100% { 
+                transform: translateX(calc(100vw + 50px)) translateY(0px); 
+            }
+        }
+
+        /* Efecto de brisa en las hojas */
+        .leaf {
+            position: absolute;
+            font-size: 1.3rem;
+            animation: leafFall 15s linear infinite;
+        }
+
+        @keyframes leafFall {
+            0% { 
+                transform: translateY(-50px) translateX(0px) rotate(0deg);
+                opacity: 0;
+            }
+            10% { 
+                opacity: 1;
+            }
+            90% { 
+                opacity: 1;
+            }
+            100% { 
+                transform: translateY(100vh) translateX(50px) rotate(360deg);
+                opacity: 0;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Fondo animado -->
-    <div class="background">
-        <div class="water"></div>
-        <div class="wave"></div>
-        <div class="buildings"></div>
-        <div class="gondola">🛶</div>
-        <div class="particles" id="particles"></div>
+    <!-- Fondo de montañas -->
+    <div class="mountain-background">
+        <div class="sky">
+            <!-- Nubes -->
+            <div class="cloud cloud-1"></div>
+            <div class="cloud cloud-2"></div>
+            <div class="cloud cloud-3"></div>
+            
+            <!-- Pájaros -->
+            <div class="bird" style="top: 25%; animation-delay: 0s;">🐦</div>
+            <div class="bird" style="top: 20%; animation-delay: 3s;">🐦</div>
+        </div>
+        <div class="mountains-far"></div>
+        <div class="mountains-near"></div>
+        <div class="ground"></div>
     </div>
 
-    <!-- Elementos flotantes -->
-    <div class="floating-elements">
-        <div class="floating-element" style="top: 20%; left: 10%; animation-delay: 0s;">🏛️</div>
-        <div class="floating-element" style="top: 15%; right: 15%; animation-delay: 1s;">🎭</div>
-        <div class="floating-element" style="top: 60%; left: 20%; animation-delay: 2s;">🌅</div>
-        <div class="floating-element" style="top: 70%; right: 10%; animation-delay: 3s;">🍝</div>
+    <!-- Elementos naturales flotantes -->
+    <div class="floating-nature">
+        <div class="nature-element" style="top: 15%; left: 15%; animation-delay: 0s;">🌲</div>
+        <div class="nature-element" style="top: 20%; right: 20%; animation-delay: 2s;">🌺</div>
+        <div class="nature-element" style="top: 60%; left: 10%; animation-delay: 4s;">🍃</div>
+        <div class="nature-element" style="top: 55%; right: 15%; animation-delay: 6s;">🌼</div>
+        
+        <!-- Hojas cayendo -->
+        <div class="leaf" style="left: 10%; animation-delay: 0s;">🍂</div>
+        <div class="leaf" style="left: 30%; animation-delay: 2s;">🍃</div>
+        <div class="leaf" style="left: 50%; animation-delay: 4s;">🍂</div>
+        <div class="leaf" style="left: 70%; animation-delay: 6s;">🍃</div>
+        <div class="leaf" style="left: 90%; animation-delay: 8s;">🍂</div>
     </div>
 
     <!-- Contenido de bienvenida -->
     <div class="welcome-container">
-        <div class="welcome-message">
-            <div class="venice-icon">🇮🇹</div>
-            <h1>Bienvenido a Venecia</h1>
-            <p class="subtitle">La ciudad flotante te espera</p>
+        <div class="welcome-card">
+            <div class="nature-icon">🏔️</div>
+            <h1>Bienvenido a la Paz</h1>
+            <p class="subtitle">Donde la naturaleza abraza el alma</p>
             <div class="message">
-                Donde los canales susurran historias centenarias<br>
-                y cada puente es un portal al pasado.<br>
-                Prepárate para vivir la magia veneciana.
+                Respira profundamente y siente la calma.<br>
+                Las montañas susurran secretos ancestrales<br>
+                y el viento acaricia con suavidad.
             </div>
-            <button class="enter-btn" onclick="enterVenice()">
-                Descubre la Magia →
+            <button class="enter-btn" onclick="enterPeace()">
+                Comenzar el Viaje →
             </button>
         </div>
     </div>
 
     <script>
-        // Crear partículas dinámicas
-        function createParticles() {
-            const particlesContainer = document.getElementById('particles');
-            const particleCount = 30;
+        // Crear nubes dinámicamente
+        function createClouds() {
+            const sky = document.querySelector('.sky');
+            const cloudCount = 5;
             
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
+            for (let i = 0; i < cloudCount; i++) {
+                const cloud = document.createElement('div');
+                cloud.className = 'cloud';
                 
-                // Posición y tamaño aleatorio
-                const size = Math.random() * 4 + 1;
-                const left = Math.random() * 100;
-                const delay = Math.random() * 6;
-                const duration = Math.random() * 4 + 4;
+                const size = Math.random() * 60 + 40;
+                const top = Math.random() * 30 + 10;
+                const delay = Math.random() * 20;
+                const duration = Math.random() * 20 + 30;
                 
-                particle.style.width = `${size}px`;
-                particle.style.height = `${size}px`;
-                particle.style.left = `${left}%`;
-                particle.style.animationDelay = `${delay}s`;
-                particle.style.animationDuration = `${duration}s`;
+                cloud.style.width = `${size}px`;
+                cloud.style.height = `${size * 0.3}px`;
+                cloud.style.top = `${top}%`;
+                cloud.style.left = `${Math.random() * 20 - 10}%`;
+                cloud.style.animationDelay = `${delay}s`;
+                cloud.style.animationDuration = `${duration}s`;
+                cloud.style.opacity = Math.random() * 0.3 + 0.6;
                 
-                particlesContainer.appendChild(particle);
+                sky.appendChild(cloud);
             }
         }
 
         // Efecto al hacer clic en el botón
-        function enterVenice() {
+        function enterPeace() {
             const btn = document.querySelector('.enter-btn');
-            const message = document.querySelector('.welcome-message');
+            const card = document.querySelector('.welcome-card');
             
-            // Efecto de pulsación
-            btn.style.transform = 'scale(0.95)';
-            btn.style.animation = 'none';
+            // Efecto suave al hacer clic
+            btn.style.transform = 'scale(0.98)';
             
-            // Efecto de desvanecimiento
-            message.style.animation = 'messageAppear 2s ease-out reverse';
-            message.style.opacity = '0';
+            // Efecto de desvanecimiento suave
+            card.style.transition = 'all 1s ease';
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(-20px)';
             
-            // Redirigir después de la animación
+            // Mensaje de transición
             setTimeout(() => {
-                alert('¡Bienvenido a Venecia! En una página real, aquí navegarías al contenido principal.');
+                alert('¡Bienvenido a este lugar de paz! En una página real, aquí navegarías al contenido principal.');
                 // window.location.href = 'main.html'; // Para redirigir a otra página
             }, 1000);
         }
 
-        // Inicializar efectos cuando carga la página
-        document.addEventListener('DOMContentLoaded', function() {
-            createParticles();
+        // Efecto de parallax suave con el scroll del mouse
+        let mouseX = 0, mouseY = 0;
+        
+        document.addEventListener('mousemove', (e) => {
+            mouseX = (e.clientX / window.innerWidth - 0.5) * 20;
+            mouseY = (e.clientY / window.innerHeight - 0.5) * 10;
             
-            // Efecto de escritura para el mensaje
+            const mountainsFar = document.querySelector('.mountains-far');
+            const mountainsNear = document.querySelector('.mountains-near');
+            const card = document.querySelector('.welcome-card');
+            
+            mountainsFar.style.transform = `translateX(${mouseX * 0.3}px) translateY(${mouseY * 0.3}px)`;
+            mountainsNear.style.transform = `translateX(${mouseX * 0.5}px) translateY(${mouseY * 0.5}px)`;
+            card.style.transform = `translateX(${mouseX * 0.1}px) translateY(${mouseY * 0.1}px)`;
+        });
+
+        // Inicializar cuando carga la página
+        document.addEventListener('DOMContentLoaded', function() {
+            createClouds();
+            
+            // Efecto de escritura suave para el mensaje
             const message = document.querySelector('.message');
             const originalText = message.innerHTML;
             message.innerHTML = '';
@@ -364,25 +427,22 @@
                 if (i < originalText.length) {
                     message.innerHTML += originalText.charAt(i);
                     i++;
-                    setTimeout(typeWriter, 50);
+                    setTimeout(typeWriter, 60); // Más lento para mayor tranquilidad
                 }
             }
             
             // Iniciar escritura después de un delay
-            setTimeout(typeWriter, 1000);
+            setTimeout(typeWriter, 800);
         });
 
-        // Efecto de movimiento con el mouse
-        document.addEventListener('mousemove', function(e) {
-            const x = e.clientX / window.innerWidth;
-            const y = e.clientY / window.innerHeight;
-            
-            const water = document.querySelector('.water');
-            const message = document.querySelector('.welcome-message');
-            
-            water.style.transform = `scaleY(${1 + y * 0.05})`;
-            message.style.transform = `translate(${(x - 0.5) * 10}px, ${(y - 0.5) * 10}px)`;
-        });
+        // Efecto de sonido de viento (simulado)
+        function playWindEffect() {
+            // En una implementación real, aquí podrías agregar sonido
+            console.log('Sonido de brisa suave... 🍃');
+        }
+
+        // Reproducir efecto de viento cada cierto tiempo
+        setInterval(playWindEffect, 10000);
     </script>
 </body>
 </html>
