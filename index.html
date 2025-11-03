@@ -321,13 +321,14 @@
             color: white;
             border: none;
             padding: 14px 32px;
-            font-size: 1.05rem;
+            font-size: 1.1rem;
             border-radius: 25px;
             cursor: pointer;
             margin-top: 20px;
             transition: all 0.3s ease;
             box-shadow: 0 6px 20px rgba(255, 107, 107, 0.35);
             animation: buttonPulse 1.5s ease-in-out 2s both;
+            font-weight: bold;
         }
 
         .continue-btn:hover {
@@ -396,7 +397,7 @@
             </div>
 
             <button class="continue-btn" onclick="continueJourney()">
-                Nuestro Viaje Continúa →
+                Presióname
             </button>
         </div>
 
@@ -470,6 +471,7 @@
             
             // Efecto de clic
             btn.style.transform = 'scale(0.95)';
+            btn.textContent = '¡Gracias! 💖';
             
             // Crear explosión de corazones
             createHeartExplosion();
