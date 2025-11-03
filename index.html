@@ -76,13 +76,6 @@
             animation: letterAppear 1.5s ease-out;
         }
 
-        .heart-icon {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            animation: heartbeat 1.2s ease-in-out infinite;
-            filter: drop-shadow(0 5px 15px rgba(255, 0, 100, 0.4));
-        }
-
         .greeting {
             font-size: 2rem;
             margin-bottom: 25px;
@@ -209,13 +202,6 @@
                 opacity: 1;
                 transform: translateX(0) scale(1);
             }
-        }
-
-        @keyframes heartbeat {
-            0%, 100% { transform: scale(1); }
-            25% { transform: scale(1.08); }
-            50% { transform: scale(1); }
-            75% { transform: scale(1.05); }
         }
 
         @keyframes slideInDown {
@@ -380,7 +366,6 @@
     <div class="love-container">
         <!-- Carta de amor -->
         <div class="love-letter">
-            <div class="heart-icon">💖</div>
             <h1 class="greeting">Para Ti, Mi Amor</h1>
             
             <div class="message-container">
@@ -526,15 +511,6 @@
         document.addEventListener('DOMContentLoaded', function() {
             createHearts();
             createSparkles();
-            
-            // Efecto de latido del corazón cada cierto tiempo
-            setInterval(() => {
-                const heart = document.querySelector('.heart-icon');
-                heart.style.animation = 'none';
-                setTimeout(() => {
-                    heart.style.animation = 'heartbeat 1.2s ease-in-out infinite';
-                }, 10);
-            }, 4000);
         });
 
         // Efecto de movimiento suave con el mouse
