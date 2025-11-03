@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nuestra Aventura 🏎️💨</title>
+    <title>Nuestro Mundo Juntos 🌟</title>
     <style>
         * {
             margin: 0;
@@ -21,7 +21,7 @@
             align-items: center;
         }
 
-        /* Fondo de Fórmula 1 */
+        /* Fondo romántico diferente */
         .background-image {
             position: fixed;
             top: 0;
@@ -29,11 +29,11 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-            background-image: url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-image: url('https://images.unsplash.com/photo-1518837695005-2083093ee35b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            animation: backgroundMove 20s linear infinite;
+            animation: backgroundGlow 15s ease-in-out infinite;
         }
 
         .overlay {
@@ -42,12 +42,12 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(45deg, rgba(200, 0, 0, 0.3), rgba(0, 0, 0, 0.6));
+            background: linear-gradient(45deg, rgba(147, 112, 219, 0.3), rgba(255, 182, 193, 0.3));
             z-index: -1;
         }
 
         /* Contenedor principal */
-        .f1-container {
+        .page-container {
             position: relative;
             z-index: 2;
             display: flex;
@@ -62,49 +62,49 @@
             gap: 40px;
         }
 
-        .love-message {
-            background: rgba(0, 0, 0, 0.7);
+        .main-content {
+            background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(15px);
             border-radius: 20px;
             padding: 40px 35px;
-            border: 2px solid rgba(255, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.3);
             box-shadow: 
-                0 20px 40px rgba(0, 0, 0, 0.6),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+                0 20px 40px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
             width: 100%;
             max-width: 500px;
             animation: slideInLeft 1.5s ease-out;
         }
 
-        .f1-icon {
+        .main-icon {
             font-size: 4rem;
             margin-bottom: 20px;
-            animation: racePulse 2s ease-in-out infinite;
-            filter: drop-shadow(0 5px 15px rgba(255, 0, 0, 0.5));
+            animation: float 3s ease-in-out infinite;
+            filter: drop-shadow(0 5px 15px rgba(147, 112, 219, 0.5));
         }
 
-        .title {
+        .main-title {
             font-size: 2.2rem;
             margin-bottom: 25px;
             font-weight: 300;
             text-shadow: 0 3px 10px rgba(0,0,0,0.6);
             animation: slideInDown 1s ease-out;
-            background: linear-gradient(45deg, #ff0000, #ff6b6b, #ff0000);
+            background: linear-gradient(45deg, #9370DB, #FFB6C1, #9370DB);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
-        .message-box {
+        .content-box {
             background: rgba(255, 255, 255, 0.08);
             border-radius: 12px;
             padding: 25px;
             margin: 25px 0;
-            border-left: 3px solid #ff0000;
+            border-left: 3px solid #9370DB;
             animation: messageReveal 1.5s ease-out;
         }
 
-        .message-content {
+        .content-text {
             font-size: 1.2rem;
             line-height: 1.7;
             color: #f8f9fa;
@@ -112,45 +112,45 @@
             font-style: italic;
         }
 
-        .message-line {
+        .text-line {
             display: block;
             margin-bottom: 12px;
             opacity: 0;
             animation: fadeInUp 0.8s ease-out forwards;
         }
 
-        .signature {
+        .page-signature {
             font-size: 1.3rem;
             margin-top: 25px;
-            color: #ffd700;
+            color: #FFD700;
             font-weight: bold;
             text-shadow: 0 2px 8px rgba(255, 215, 0, 0.6);
             animation: signatureAppear 1.2s ease-out 1.5s both;
         }
 
-        /* Panel derecho F1 */
-        .f1-side {
+        /* Panel derecho */
+        .side-content {
             width: 100%;
             max-width: 450px;
             animation: slideInRight 1.5s ease-out;
         }
 
-        .f1-image {
+        .side-image {
             width: 100%;
             height: 300px;
             border-radius: 20px;
-            background: linear-gradient(135deg, rgba(255, 0, 0, 0.2), rgba(200, 0, 0, 0.3));
+            background: linear-gradient(135deg, rgba(147, 112, 219, 0.2), rgba(255, 182, 193, 0.2));
             display: flex;
             justify-content: center;
             align-items: center;
             font-size: 5rem;
-            border: 2px solid rgba(255, 0, 0, 0.4);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
             backdrop-filter: blur(10px);
-            animation: raceGlow 3s ease-in-out infinite;
+            animation: glow 4s ease-in-out infinite;
         }
 
-        .f1-quote {
+        .side-quote {
             margin-top: 25px;
             font-style: italic;
             font-size: 1.1rem;
@@ -159,11 +159,11 @@
             padding: 20px;
             background: rgba(255, 255, 255, 0.08);
             border-radius: 12px;
-            border-right: 3px solid #ffd700;
+            border-right: 3px solid #FFD700;
         }
 
-        /* Efectos de velocidad */
-        .speed-lines {
+        /* Efectos especiales */
+        .floating-hearts {
             position: fixed;
             top: 0;
             left: 0;
@@ -173,35 +173,35 @@
             z-index: 1;
         }
 
-        .speed-line {
+        .floating-heart {
             position: absolute;
-            width: 4px;
-            height: 100px;
-            background: linear-gradient(to bottom, transparent, #ff0000, transparent);
+            font-size: 1.5rem;
             opacity: 0;
-            animation: speedLine 1.5s linear infinite;
+            animation: floatHeart 8s linear infinite;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
         }
 
         /* Animaciones */
-        @keyframes backgroundMove {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-
-        @keyframes racePulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-        }
-
-        @keyframes raceGlow {
+        @keyframes backgroundGlow {
             0%, 100% { 
-                box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
-                border-color: rgba(255, 0, 0, 0.4);
+                filter: brightness(0.8) hue-rotate(0deg) saturate(1.2);
             }
             50% { 
-                box-shadow: 0 15px 40px rgba(255, 0, 0, 0.6);
-                border-color: rgba(255, 100, 100, 0.6);
+                filter: brightness(0.9) hue-rotate(10deg) saturate(1.3);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes glow {
+            0%, 100% { 
+                box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            }
+            50% { 
+                box-shadow: 0 15px 40px rgba(147, 112, 219, 0.6);
             }
         }
 
@@ -271,19 +271,19 @@
             }
         }
 
-        @keyframes speedLine {
+        @keyframes floatHeart {
             0% { 
-                transform: translateY(-100px) rotate(0deg);
+                transform: translateY(100vh) translateX(0) rotate(0deg) scale(0.8);
                 opacity: 0;
             }
             10% { 
-                opacity: 0.8;
+                opacity: 0.7;
             }
             90% { 
-                opacity: 0.8;
+                opacity: 0.7;
             }
             100% { 
-                transform: translateY(100vh) rotate(0deg);
+                transform: translateY(-100px) translateX(20px) rotate(180deg) scale(1);
                 opacity: 0;
             }
         }
@@ -297,7 +297,7 @@
         }
 
         .action-btn {
-            background: linear-gradient(135deg, #ff0000, #cc0000);
+            background: linear-gradient(135deg, #9370DB, #8A2BE2);
             color: white;
             border: none;
             padding: 12px 25px;
@@ -305,23 +305,23 @@
             border-radius: 20px;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 6px 20px rgba(255, 0, 0, 0.3);
+            box-shadow: 0 6px 20px rgba(147, 112, 219, 0.4);
             animation: buttonPulse 1.5s ease-in-out 2s both;
             font-weight: bold;
         }
 
         .action-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(255, 0, 0, 0.5);
-            background: linear-gradient(135deg, #ff3333, #ff0000);
+            box-shadow: 0 10px 25px rgba(147, 112, 219, 0.6);
+            background: linear-gradient(135deg, #9B7FD9, #9932CC);
         }
 
         .back-btn {
-            background: linear-gradient(135deg, #333333, #666666);
+            background: linear-gradient(135deg, #FFB6C1, #FF69B4);
         }
 
         .back-btn:hover {
-            background: linear-gradient(135deg, #555555, #888888);
+            background: linear-gradient(135deg, #FFC0CB, #FF1493);
         }
 
         @keyframes buttonPulse {
@@ -331,121 +331,127 @@
 
         /* Responsive */
         @media (max-width: 768px) {
-            .f1-container {
+            .page-container {
                 flex-direction: column;
                 gap: 20px;
             }
             
-            .f1-side {
+            .side-content {
                 max-width: 500px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Fondo de Fórmula 1 -->
+    <!-- Fondo romántico diferente -->
     <div class="background-image"></div>
     <div class="overlay"></div>
 
-    <!-- Efectos de velocidad -->
-    <div class="speed-lines" id="speedLines"></div>
+    <!-- Corazones flotantes -->
+    <div class="floating-hearts" id="floatingHearts"></div>
 
     <!-- Contenido principal -->
-    <div class="f1-container">
-        <!-- Mensaje romántico F1 -->
-        <div class="love-message">
-            <div class="f1-icon">🏎️💨</div>
-            <h1 class="title">Nuestra Aventura</h1>
+    <div class="page-container">
+        <!-- Contenido principal -->
+        <div class="main-content">
+            <div class="main-icon">✨🌟</div>
+            <h1 class="main-title">Nuestro Mundo Juntos</h1>
             
-            <div class="message-box">
-                <div class="message-content">
-                    <span class="message-line" style="animation-delay: 0.5s;">
-                        "Como un coche de Fórmula 1 en la recta principal,
+            <div class="content-box">
+                <div class="content-text">
+                    <span class="text-line" style="animation-delay: 0.5s;">
+                        "Cada día a tu lado es un nuevo capítulo
                     </span>
-                    <span class="message-line" style="animation-delay: 1s;">
-                        nuestro amor acelera con cada día que pasa.
+                    <span class="text-line" style="animation-delay: 1s;">
+                        en nuestra historia de amor infinito.
                     </span>
-                    <span class="message-line" style="animation-delay: 1.5s;">
-                        Superamos todas las curvas juntos,
+                    <span class="text-line" style="animation-delay: 1.5s;">
+                        Juntos hemos creado un universo
                     </span>
-                    <span class="message-line" style="animation-delay: 2s;">
-                        y cada desafío nos hace más fuertes.
+                    <span class="text-line" style="animation-delay: 2s;">
+                        donde solo existen risas, complicidad
                     </span>
-                    <span class="message-line" style="animation-delay: 2.5s;">
-                        Eres mi equipo, mi pit stop perfecto,
+                    <span class="text-line" style="animation-delay: 2.5s;">
+                        y momentos que atesoro en lo más profundo
                     </span>
-                    <span class="message-line" style="animation-delay: 3s;">
-                        y juntos vamos por el podio del amor eterno."
+                    <span class="text-line" style="animation-delay: 3s;">
+                        de mi corazón."
                     </span>
                 </div>
             </div>
 
-            <div class="signature">
-                Tu piloto en esta carrera 💕
+            <div class="page-signature">
+                Eres mi constelación favorita 💫
             </div>
 
             <div class="action-buttons">
-                <button class="action-btn" onclick="surprise()">
-                    ¡Sorpresa! 🎁
+                <button class="action-btn" onclick="showMagic()">
+                    Magia ✨
                 </button>
                 <button class="action-btn back-btn" onclick="goBack()">
-                    Volver ↩️
+                    Volver 💕
                 </button>
             </div>
         </div>
 
-        <!-- Panel derecho F1 -->
-        <div class="f1-side">
-            <div class="f1-image">
-                ❤️🏆
+        <!-- Panel derecho -->
+        <div class="side-content">
+            <div class="side-image">
+                🌙⭐
             </div>
-            <div class="f1-quote">
-                "En la pista de la vida, encontré a mi copiloto perfecto. Contigo, cada vuelta es emocionante y cada meta superada nos acerca más a la eternidad."
+            <div class="side-quote">
+                "En la galaxia de mi vida, tú eres la estrella más brillante. Tu amor ilumina cada rincón de mi existencia y hace que cada día valga la pena."
             </div>
         </div>
     </div>
 
     <script>
-        // Crear líneas de velocidad
-        function createSpeedLines() {
-            const speedLines = document.getElementById('speedLines');
-            const lineCount = 8;
+        // Crear corazones flotantes
+        function createFloatingHearts() {
+            const heartsContainer = document.getElementById('floatingHearts');
+            const heartCount = 12;
+            const heartStyles = ['💜', '💖', '💗', '💓', '💞', '✨', '🌟'];
             
-            for (let i = 0; i < lineCount; i++) {
-                const line = document.createElement('div');
-                line.className = 'speed-line';
+            for (let i = 0; i < heartCount; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'floating-heart';
+                heart.innerHTML = heartStyles[Math.floor(Math.random() * heartStyles.length)];
                 
                 const left = Math.random() * 100;
-                const delay = Math.random() * 1.5;
-                const duration = Math.random() * 0.5 + 1;
+                const delay = Math.random() * 8;
+                const duration = Math.random() * 4 + 6;
+                const size = Math.random() * 0.8 + 1;
                 
-                line.style.left = `${left}%`;
-                line.style.animationDelay = `${delay}s`;
-                line.style.animationDuration = `${duration}s`;
+                heart.style.left = `${left}%`;
+                heart.style.animationDelay = `${delay}s`;
+                heart.style.animationDuration = `${duration}s`;
+                heart.style.fontSize = `${size}rem`;
                 
-                speedLines.appendChild(line);
+                heartsContainer.appendChild(heart);
             }
         }
 
-        // Efecto sorpresa
-        function surprise() {
+        // Efecto mágico
+        function showMagic() {
             const btn = document.querySelector('.action-btn');
-            const message = document.querySelector('.love-message');
+            const content = document.querySelector('.main-content');
             
             // Efecto de clic
             btn.style.transform = 'scale(0.95)';
-            btn.textContent = '¡Vroom! 🏎️';
+            btn.textContent = '¡Mágico! ✨';
             
-            // Crear explosión de corazones rojos
-            createHeartExplosion();
+            // Crear explosión de estrellas
+            createStarExplosion();
             
-            // Efecto de vibración
-            message.style.animation = 'vibration 0.3s ease-in-out';
+            // Efecto de brillo
+            content.style.transition = 'all 0.5s ease';
+            content.style.boxShadow = '0 0 50px rgba(147, 112, 219, 0.8)';
             
             setTimeout(() => {
-                message.style.animation = '';
-                alert('🎉 ¡Eres el gran premio de mi vida! 💖');
-            }, 300);
+                content.style.boxShadow = '';
+                btn.textContent = 'Magia ✨';
+                alert('🌟 ¡Eres la magia que ilumina mi vida! 💖');
+            }, 1500);
         }
 
         // Volver a la página anterior
@@ -459,26 +465,25 @@
             }, 1000);
         }
 
-        // Explosión de corazones
-        function createHeartExplosion() {
-            const speedLines = document.getElementById('speedLines');
-            const heartColors = ['❤️', '💕', '💖', '💘', '🏎️'];
+        // Explosión de estrellas
+        function createStarExplosion() {
+            const heartsContainer = document.getElementById('floatingHearts');
+            const starTypes = ['✨', '🌟', '⭐', '💫', '🌙'];
             
-            for (let i = 0; i < 12; i++) {
-                const heart = document.createElement('div');
-                heart.className = 'speed-line';
-                heart.innerHTML = heartColors[Math.floor(Math.random() * heartColors.length)];
-                heart.style.animation = `speedLine 2s ease-out forwards`;
-                heart.style.fontSize = '1.5rem';
-                heart.style.background = 'transparent';
-                heart.style.width = 'auto';
-                heart.style.height = 'auto';
+            for (let i = 0; i < 15; i++) {
+                const star = document.createElement('div');
+                star.className = 'floating-heart';
+                star.innerHTML = starTypes[Math.floor(Math.random() * starTypes.length)];
+                star.style.animation = `floatHeart 3s ease-out forwards`;
+                star.style.left = '50%';
+                star.style.top = '50%';
+                star.style.fontSize = `${Math.random() * 1 + 1}rem`;
                 
-                speedLines.appendChild(heart);
+                heartsContainer.appendChild(star);
                 
                 setTimeout(() => {
-                    heart.remove();
-                }, 2000);
+                    star.remove();
+                }, 3000);
             }
         }
 
@@ -487,16 +492,16 @@
             const x = (e.clientX / window.innerWidth - 0.5) * 10;
             const y = (e.clientY / window.innerHeight - 0.5) * 10;
             
-            const message = document.querySelector('.love-message');
-            const f1Side = document.querySelector('.f1-side');
+            const mainContent = document.querySelector('.main-content');
+            const sideContent = document.querySelector('.side-content');
             
-            message.style.transform = `translate(${x}px, ${y}px)`;
-            f1Side.style.transform = `translate(${-x}px, ${y}px)`;
+            mainContent.style.transform = `translate(${x}px, ${y}px)`;
+            sideContent.style.transform = `translate(${-x}px, ${y}px)`;
         });
 
         // Inicializar efectos cuando carga la página
         document.addEventListener('DOMContentLoaded', function() {
-            createSpeedLines();
+            createFloatingHearts();
         });
     </script>
 </body>
