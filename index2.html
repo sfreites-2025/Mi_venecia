@@ -14,14 +14,14 @@
         body {
             font-family: 'Georgia', 'Times New Roman', serif;
             min-height: 100vh;
-            overflow: hidden;
             background: #000;
             display: flex;
             justify-content: center;
             align-items: center;
+            padding: 20px;
         }
 
-        /* Fondo romántico diferente */
+        /* Fondo romántico */
         .background-image {
             position: fixed;
             top: 0;
@@ -33,7 +33,6 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            animation: backgroundGlow 15s ease-in-out infinite;
         }
 
         .overlay {
@@ -56,7 +55,6 @@
             align-items: center;
             text-align: center;
             color: white;
-            padding: 20px;
             width: 100%;
             max-width: 1100px;
             gap: 40px;
@@ -68,18 +66,14 @@
             border-radius: 20px;
             padding: 40px 35px;
             border: 1px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 
-                0 20px 40px rgba(0, 0, 0, 0.4),
-                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
             width: 100%;
             max-width: 500px;
-            animation: slideInLeft 1.5s ease-out;
         }
 
         .main-icon {
             font-size: 4rem;
             margin-bottom: 20px;
-            animation: float 3s ease-in-out infinite;
             filter: drop-shadow(0 5px 15px rgba(147, 112, 219, 0.5));
         }
 
@@ -88,7 +82,6 @@
             margin-bottom: 25px;
             font-weight: 300;
             text-shadow: 0 3px 10px rgba(0,0,0,0.6);
-            animation: slideInDown 1s ease-out;
             background: linear-gradient(45deg, #9370DB, #FFB6C1, #9370DB);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -101,7 +94,6 @@
             padding: 25px;
             margin: 25px 0;
             border-left: 3px solid #9370DB;
-            animation: messageReveal 1.5s ease-out;
         }
 
         .content-text {
@@ -115,8 +107,6 @@
         .text-line {
             display: block;
             margin-bottom: 12px;
-            opacity: 0;
-            animation: fadeInUp 0.8s ease-out forwards;
         }
 
         .page-signature {
@@ -125,14 +115,12 @@
             color: #FFD700;
             font-weight: bold;
             text-shadow: 0 2px 8px rgba(255, 215, 0, 0.6);
-            animation: signatureAppear 1.2s ease-out 1.5s both;
         }
 
         /* Panel derecho */
         .side-content {
             width: 100%;
             max-width: 450px;
-            animation: slideInRight 1.5s ease-out;
         }
 
         .side-image {
@@ -147,7 +135,6 @@
             border: 1px solid rgba(255, 255, 255, 0.3);
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
             backdrop-filter: blur(10px);
-            animation: glow 4s ease-in-out infinite;
         }
 
         .side-quote {
@@ -160,132 +147,6 @@
             background: rgba(255, 255, 255, 0.08);
             border-radius: 12px;
             border-right: 3px solid #FFD700;
-        }
-
-        /* Efectos especiales */
-        .floating-hearts {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .floating-heart {
-            position: absolute;
-            font-size: 1.5rem;
-            opacity: 0;
-            animation: floatHeart 8s linear infinite;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
-        }
-
-        /* Animaciones */
-        @keyframes backgroundGlow {
-            0%, 100% { 
-                filter: brightness(0.8) hue-rotate(0deg) saturate(1.2);
-            }
-            50% { 
-                filter: brightness(0.9) hue-rotate(10deg) saturate(1.3);
-            }
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
-
-        @keyframes glow {
-            0%, 100% { 
-                box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
-            }
-            50% { 
-                box-shadow: 0 15px 40px rgba(147, 112, 219, 0.6);
-            }
-        }
-
-        @keyframes slideInLeft {
-            0% { 
-                opacity: 0;
-                transform: translateX(-60px) scale(0.9);
-            }
-            100% { 
-                opacity: 1;
-                transform: translateX(0) scale(1);
-            }
-        }
-
-        @keyframes slideInRight {
-            0% { 
-                opacity: 0;
-                transform: translateX(60px) scale(0.9);
-            }
-            100% { 
-                opacity: 1;
-                transform: translateX(0) scale(1);
-            }
-        }
-
-        @keyframes slideInDown {
-            0% { 
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            100% { 
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes messageReveal {
-            0% { 
-                opacity: 0;
-                transform: translateX(-30px);
-            }
-            100% { 
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes fadeInUp {
-            0% { 
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            100% { 
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes signatureAppear {
-            0% { 
-                opacity: 0;
-                transform: translateX(30px);
-            }
-            100% { 
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes floatHeart {
-            0% { 
-                transform: translateY(100vh) translateX(0) rotate(0deg) scale(0.8);
-                opacity: 0;
-            }
-            10% { 
-                opacity: 0.7;
-            }
-            90% { 
-                opacity: 0.7;
-            }
-            100% { 
-                transform: translateY(-100px) translateX(20px) rotate(180deg) scale(1);
-                opacity: 0;
-            }
         }
 
         /* Botones */
@@ -306,7 +167,6 @@
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 0 6px 20px rgba(147, 112, 219, 0.4);
-            animation: buttonPulse 1.5s ease-in-out 2s both;
             font-weight: bold;
         }
 
@@ -332,11 +192,6 @@
             background: linear-gradient(135deg, #90EE90, #00FF00);
         }
 
-        @keyframes buttonPulse {
-            0% { opacity: 0; transform: scale(0.9); }
-            100% { opacity: 1; transform: scale(1); }
-        }
-
         /* Responsive */
         @media (max-width: 768px) {
             .page-container {
@@ -351,12 +206,9 @@
     </style>
 </head>
 <body>
-    <!-- Fondo romántico diferente -->
+    <!-- Fondo romántico -->
     <div class="background-image"></div>
     <div class="overlay"></div>
-
-    <!-- Corazones flotantes -->
-    <div class="floating-hearts" id="floatingHearts"></div>
 
     <!-- Contenido principal -->
     <div class="page-container">
@@ -367,49 +219,49 @@
             
             <div class="content-box">
                 <div class="content-text">
-                    <span class="text-line" style="animation-delay: 0.5s;">
+                    <span class="text-line">
                         Hay más de doscientas razones para confiar en mí,
                     </span>
-                    <span class="text-line" style="animation-delay: 1s;">
+                    <span class="text-line">
                         y todas se entrelazan en una sola promesa de integridad
                     </span>
-                    <span class="text-line" style="animation-delay: 1.5s;">
+                    <span class="text-line">
                         y compromiso. La primera cien se forjan en la coherencia
                     </span>
-                    <span class="text-line" style="animation-delay: 2s;">
+                    <span class="text-line">
                         de mis acciones, en la firmeza de mi palabra que nunca
                     </span>
-                    <span class="text-line" style="animation-delay: 2.5s;">
+                    <span class="text-line">
                         se quiebra y en la transparencia con la que actúo,
                     </span>
-                    <span class="text-line" style="animation-delay: 3s;">
+                    <span class="text-line">
                         donde cada decisión está guiada por la ética y el respeto.
                     </span>
-                    <span class="text-line" style="animation-delay: 3.5s;">
+                    <span class="text-line">
                         La segunda cien anidan en mi capacidad de escucha activa,
                     </span>
-                    <span class="text-line" style="animation-delay: 4s;">
+                    <span class="text-line">
                         en la empatía que me permite entender tus necesidades
                     </span>
-                    <span class="text-line" style="animation-delay: 4.5s;">
+                    <span class="text-line">
                         más allá de las palabras y en la resiliencia para superar
                     </span>
-                    <span class="text-line" style="animation-delay: 5s;">
+                    <span class="text-line">
                         obstáculos a tu lado, sin rendirme. Pero la razón número
                     </span>
-                    <span class="text-line" style="animation-delay: 5.5s;">
+                    <span class="text-line">
                         doscientos uno, la más importante, es que mi lealtad
                     </span>
-                    <span class="text-line" style="animation-delay: 6s;">
+                    <span class="text-line">
                         no es una cifra, sino un principio inquebrantable;
                     </span>
-                    <span class="text-line" style="animation-delay: 6.5s;">
+                    <span class="text-line">
                         confiar en mí es apostar por un aliado que no te fallará,
                     </span>
-                    <span class="text-line" style="animation-delay: 7s;">
+                    <span class="text-line">
                         porque tu éxito y tu bienestar son, en definitiva,
                     </span>
-                    <span class="text-line" style="animation-delay: 7.5s;">
+                    <span class="text-line">
                         también los míos.
                     </span>
                 </div>
@@ -444,58 +296,20 @@
     </div>
 
     <script>
-        // Crear corazones flotantes
-        function createFloatingHearts() {
-            const heartsContainer = document.getElementById('floatingHearts');
-            const heartCount = 12;
-            const heartStyles = ['💜', '💖', '💗', '💓', '💞', '✨', '🌟'];
-            
-            for (let i = 0; i < heartCount; i++) {
-                const heart = document.createElement('div');
-                heart.className = 'floating-heart';
-                heart.innerHTML = heartStyles[Math.floor(Math.random() * heartStyles.length)];
-                
-                const left = Math.random() * 100;
-                const delay = Math.random() * 8;
-                const duration = Math.random() * 4 + 6;
-                const size = Math.random() * 0.8 + 1;
-                
-                heart.style.left = `${left}%`;
-                heart.style.animationDelay = `${delay}s`;
-                heart.style.animationDuration = `${duration}s`;
-                heart.style.fontSize = `${size}rem`;
-                
-                heartsContainer.appendChild(heart);
-            }
-        }
-
-        // Efecto mágico
+        // Función para mostrar mensaje mágico
         function showMagic() {
             const btn = document.querySelector('.action-btn');
-            const content = document.querySelector('.main-content');
-            
-            // Efecto de clic
-            btn.style.transform = 'scale(0.95)';
             btn.textContent = '¡Mágico! ✨';
             
-            // Crear explosión de estrellas
-            createStarExplosion();
-            
-            // Efecto de brillo
-            content.style.transition = 'all 0.5s ease';
-            content.style.boxShadow = '0 0 50px rgba(147, 112, 219, 0.8)';
-            
             setTimeout(() => {
-                content.style.boxShadow = '';
                 btn.textContent = 'Magia ✨';
                 alert('🌟 ¡Eres la magia que ilumina mi vida! 💖');
-            }, 1500);
+            }, 1000);
         }
 
         // Volver a la página anterior
         function goBack() {
             const btn = document.querySelector('.back-btn');
-            btn.style.transform = 'scale(0.95)';
             btn.textContent = 'Regresando...';
             
             setTimeout(() => {
@@ -506,52 +320,12 @@
         // Ir a la siguiente página
         function goToNext() {
             const btn = document.querySelector('.next-btn');
-            btn.style.transform = 'scale(0.95)';
             btn.textContent = 'Avanzando...';
             
             setTimeout(() => {
                 window.location.href = 'index3.html';
             }, 1000);
         }
-
-        // Explosión de estrellas
-        function createStarExplosion() {
-            const heartsContainer = document.getElementById('floatingHearts');
-            const starTypes = ['✨', '🌟', '⭐', '💫', '🌙'];
-            
-            for (let i = 0; i < 15; i++) {
-                const star = document.createElement('div');
-                star.className = 'floating-heart';
-                star.innerHTML = starTypes[Math.floor(Math.random() * starTypes.length)];
-                star.style.animation = `floatHeart 3s ease-out forwards`;
-                star.style.left = '50%';
-                star.style.top = '50%';
-                star.style.fontSize = `${Math.random() * 1 + 1}rem`;
-                
-                heartsContainer.appendChild(star);
-                
-                setTimeout(() => {
-                    star.remove();
-                }, 3000);
-            }
-        }
-
-        // Efecto de movimiento con el mouse
-        document.addEventListener('mousemove', (e) => {
-            const x = (e.clientX / window.innerWidth - 0.5) * 10;
-            const y = (e.clientY / window.innerHeight - 0.5) * 10;
-            
-            const mainContent = document.querySelector('.main-content');
-            const sideContent = document.querySelector('.side-content');
-            
-            mainContent.style.transform = `translate(${x}px, ${y}px)`;
-            sideContent.style.transform = `translate(${-x}px, ${y}px)`;
-        });
-
-        // Inicializar efectos cuando carga la página
-        document.addEventListener('DOMContentLoaded', function() {
-            createFloatingHearts();
-        });
     </script>
 </body>
 </html>
