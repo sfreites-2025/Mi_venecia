@@ -324,6 +324,14 @@
             background: linear-gradient(135deg, #FFC0CB, #FF1493);
         }
 
+        .next-btn {
+            background: linear-gradient(135deg, #98FB98, #32CD32);
+        }
+
+        .next-btn:hover {
+            background: linear-gradient(135deg, #90EE90, #00FF00);
+        }
+
         @keyframes buttonPulse {
             0% { opacity: 0; transform: scale(0.9); }
             100% { opacity: 1; transform: scale(1); }
@@ -360,22 +368,49 @@
             <div class="content-box">
                 <div class="content-text">
                     <span class="text-line" style="animation-delay: 0.5s;">
-                        "Cada día a tu lado es un nuevo capítulo
+                        Hay más de doscientas razones para confiar en mí,
                     </span>
                     <span class="text-line" style="animation-delay: 1s;">
-                        en nuestra historia de amor infinito.
+                        y todas se entrelazan en una sola promesa de integridad
                     </span>
                     <span class="text-line" style="animation-delay: 1.5s;">
-                        Juntos hemos creado un universo
+                        y compromiso. La primera cien se forjan en la coherencia
                     </span>
                     <span class="text-line" style="animation-delay: 2s;">
-                        donde solo existen risas, complicidad
+                        de mis acciones, en la firmeza de mi palabra que nunca
                     </span>
                     <span class="text-line" style="animation-delay: 2.5s;">
-                        y momentos que atesoro en lo más profundo
+                        se quiebra y en la transparencia con la que actúo,
                     </span>
                     <span class="text-line" style="animation-delay: 3s;">
-                        de mi corazón."
+                        donde cada decisión está guiada por la ética y el respeto.
+                    </span>
+                    <span class="text-line" style="animation-delay: 3.5s;">
+                        La segunda cien anidan en mi capacidad de escucha activa,
+                    </span>
+                    <span class="text-line" style="animation-delay: 4s;">
+                        en la empatía que me permite entender tus necesidades
+                    </span>
+                    <span class="text-line" style="animation-delay: 4.5s;">
+                        más allá de las palabras y en la resiliencia para superar
+                    </span>
+                    <span class="text-line" style="animation-delay: 5s;">
+                        obstáculos a tu lado, sin rendirme. Pero la razón número
+                    </span>
+                    <span class="text-line" style="animation-delay: 5.5s;">
+                        doscientos uno, la más importante, es que mi lealtad
+                    </span>
+                    <span class="text-line" style="animation-delay: 6s;">
+                        no es una cifra, sino un principio inquebrantable;
+                    </span>
+                    <span class="text-line" style="animation-delay: 6.5s;">
+                        confiar en mí es apostar por un aliado que no te fallará,
+                    </span>
+                    <span class="text-line" style="animation-delay: 7s;">
+                        porque tu éxito y tu bienestar son, en definitiva,
+                    </span>
+                    <span class="text-line" style="animation-delay: 7.5s;">
+                        también los míos.
                     </span>
                 </div>
             </div>
@@ -390,6 +425,9 @@
                 </button>
                 <button class="action-btn back-btn" onclick="goBack()">
                     Volver 💕
+                </button>
+                <button class="action-btn next-btn" onclick="goToNext()">
+                    Siguiente 🌟
                 </button>
             </div>
         </div>
@@ -462,6 +500,17 @@
             
             setTimeout(() => {
                 window.location.href = 'index.html';
+            }, 1000);
+        }
+
+        // Ir a la siguiente página
+        function goToNext() {
+            const btn = document.querySelector('.next-btn');
+            btn.style.transform = 'scale(0.95)';
+            btn.textContent = 'Avanzando...';
+            
+            setTimeout(() => {
+                window.location.href = 'index3.html';
             }, 1000);
         }
 
