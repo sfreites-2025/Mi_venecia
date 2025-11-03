@@ -1,1 +1,253 @@
-2222
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>20 Razones - Nuestro Mundo</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Georgia', serif; 
+            min-height: 100vh; 
+            background: #000; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            padding: 20px;
+            background-image: url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+        }
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1;
+        }
+        .container { 
+            background: rgba(255,255,255,0.12); 
+            backdrop-filter: blur(15px);
+            border-radius: 20px; 
+            padding: 40px; 
+            max-width: 700px; 
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.25);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            position: relative;
+            z-index: 2;
+        }
+        .header {
+            margin-bottom: 30px;
+        }
+        .icon { 
+            font-size: 3rem; 
+            margin-bottom: 15px;
+            animation: float 3s ease-in-out infinite;
+        }
+        h1 { 
+            font-size: 2.2rem; 
+            margin-bottom: 10px; 
+            font-weight: 300;
+            background: linear-gradient(45deg, #FFD700, #FFA500, #FFD700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 10px;
+        }
+        .reasons-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+            margin-bottom: 30px;
+            max-height: 400px;
+            overflow-y: auto;
+            padding: 10px;
+        }
+        .reason {
+            background: rgba(255,255,255,0.08);
+            padding: 15px;
+            border-radius: 12px;
+            text-align: left;
+            border-left: 4px solid #4CAF50;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        .reason:hover {
+            background: rgba(255,255,255,0.15);
+            transform: translateX(5px);
+        }
+        .reason-number {
+            display: inline-block;
+            background: rgba(76, 175, 80, 0.3);
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 25px;
+            margin-right: 10px;
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+        .btn { 
+            background: rgba(255,255,255,0.25); 
+            color: white; 
+            border: none; 
+            padding: 12px 25px; 
+            border-radius: 25px; 
+            cursor: pointer; 
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.3);
+            margin: 5px;
+            font-weight: bold;
+        }
+        .btn:hover { 
+            background: rgba(255,255,255,0.4); 
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+        .btn-siguiente {
+            background: rgba(76, 175, 80, 0.7);
+        }
+        .btn-volver {
+            background: rgba(255, 182, 193, 0.7);
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+        
+        /* Scroll personalizado */
+        .reasons-container::-webkit-scrollbar {
+            width: 6px;
+        }
+        .reasons-container::-webkit-scrollbar-track {
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+        }
+        .reasons-container::-webkit-scrollbar-thumb {
+            background: rgba(76, 175, 80, 0.5);
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="header">
+            <div class="icon">💫🌟</div>
+            <h1>20 Razones</h1>
+            <div class="subtitle">Motivos por los que puedes confiar plenamente en mí</div>
+        </div>
+        
+        <div class="reasons-container">
+            <div class="reason">
+                <span class="reason-number">1</span>
+                Siempre te diré la verdad, por muy difícil que sea.
+            </div>
+            <div class="reason">
+                <span class="reason-number">2</span>
+                Soy transparente contigo sobre mis intenciones.
+            </div>
+            <div class="reason">
+                <span class="reason-number">3</span>
+                Nunca te mentiré para evitar un conflicto o una situación incómoda.
+            </div>
+            <div class="reason">
+                <span class="reason-number">4</span>
+                Mi palabra es mi vínculo contigo.
+            </div>
+            <div class="reason">
+                <span class="reason-number">5</span>
+                Admito mis errores sin excusas.
+            </div>
+            <div class="reason">
+                <span class="reason-number">6</span>
+                Pido perdón de manera sincera y me hago responsable de mis acciones.
+            </div>
+            <div class="reason">
+                <span class="reason-number">7</span>
+                No vivo con secretos que puedan afectarte a ti o a nuestra relación.
+            </div>
+            <div class="reason">
+                <span class="reason-number">8</span>
+                Hago lo correcto cuando nadie me está mirando.
+            </div>
+            <div class="reason">
+                <span class="reason-number">9</span>
+                Soy coherente entre lo que digo y lo que hago.
+            </div>
+            <div class="reason">
+                <span class="reason-number">10</span>
+                Tengo valores claros y los respeto en mi vida.
+            </div>
+            <div class="reason">
+                <span class="reason-number">11</span>
+                No exagero mis logros ni minimizo mis fallos.
+            </div>
+            <div class="reason">
+                <span class="reason-number">12</span>
+                Nunca traiciono la confianza de mis amigos, lo que demuestra que no traicionaré la tuya.
+            </div>
+            <div class="reason">
+                <span class="reason-number">13</span>
+                Devuelvo siempre lo que tomo prestado.
+            </div>
+            <div class="reason">
+                <span class="reason-number">14</span>
+                No hago promesas que sé que no puedo cumplir.
+            </div>
+            <div class="reason">
+                <span class="reason-number">15</span>
+                Mantengo mi compromiso de ser una mejor persona cada día.
+            </div>
+            <div class="reason">
+                <span class="reason-number">16</span>
+                Soy fiel a mí mismo, por lo tanto, puedo serte fiel a ti.
+            </div>
+            <div class="reason">
+                <span class="reason-number">17</span>
+                No me aprovecho de las situaciones de debilidad de nadie.
+            </div>
+            <div class="reason">
+                <span class="reason-number">18</span>
+                Soy predecible en mi bondad y mi fiabilidad.
+            </div>
+            <div class="reason">
+                <span class="reason-number">19</span>
+                No te oculto mis verdaderos sentimientos o preocupaciones.
+            </div>
+            <div class="reason">
+                <span class="reason-number">20</span>
+                No cambio mi personalidad para complacerte ni a nadie.
+            </div>
+        </div>
+        
+        <div>
+            <button class="btn btn-siguiente" onclick="goToIndex4()">Continuar el Viaje 🚀</button>
+            <button class="btn btn-volver" onclick="goBack()">Volver Atrás ↩️</button>
+        </div>
+    </div>
+
+    <script>
+        function goToIndex4() {
+            window.location.href = 'index4.html';
+        }
+        
+        function goBack() {
+            window.location.href = 'index2.html';
+        }
+    </script>
+</body>
+</html>
