@@ -59,10 +59,17 @@
             font-size: 1rem;
             transition: all 0.3s ease;
             border: 1px solid rgba(255,255,255,0.3);
+            margin: 5px;
         }
         .btn:hover { 
             background: rgba(255,255,255,0.4); 
             transform: translateY(-2px);
+        }
+        .btn-magia {
+            background: rgba(147, 112, 219, 0.6);
+        }
+        .btn-volver {
+            background: rgba(255, 182, 193, 0.6);
         }
     </style>
 </head>
@@ -74,7 +81,20 @@
         <div class="message">
             Hay más de doscientas razones para confiar en mí, y todas se entrelazan en una sola promesa de integridad y compromiso. La primera cien se forjan en la coherencia de mis acciones, en la firmeza de mi palabra que nunca se quiebra y en la transparencia con la que actúo, donde cada decisión está guiada por la ética y el respeto. La segunda cien anidan en mi capacidad de escucha activa, en la empatía que me permite entender tus necesidades más allá de las palabras y en la resiliencia para superar obstáculos a tu lado, sin rendirme. Pero la razón número doscientos uno, la más importante, es que mi lealtad no es una cifra, sino un principio inquebrantable; confiar en mí es apostar por un aliado que no te fallará, porque tu éxito y tu bienestar son, en definitiva, también los míos.
         </div>
-        <button class="btn" onclick="alert('✨ Eres especial ✨')">Magia ✨</button>
+        <div>
+            <button class="btn btn-magia" onclick="goToIndex3()">Magia ✨</button>
+            <button class="btn btn-volver" onclick="goBack()">Volver 💕</button>
+        </div>
     </div>
+
+    <script>
+        function goToIndex3() {
+            window.location.href = 'index3.html';
+        }
+        
+        function goBack() {
+            window.location.href = 'index.html';
+        }
+    </script>
 </body>
 </html>
