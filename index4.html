@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>20 Razones Especiales - Nuestro Mundo</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Georgia', serif; 
+            min-height: 100vh; 
+            background: #000; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            padding: 20px;
+            background-image: url('https://images.unsplash.com/photo-1518837695005-2083093ee35b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+        }
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(147, 112, 219, 0.4), rgba(255, 182, 193, 0.4));
+            z-index: 1;
+        }
+        .container { 
+            background: rgba(255,255,255,0.15); 
+            backdrop-filter: blur(20px);
+            border-radius: 25px; 
+            padding: 40px; 
+            max-width: 750px; 
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.3);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            position: relative;
+            z-index: 2;
+        }
+        .header {
+            margin-bottom: 35px;
+        }
+        .icon { 
+            font-size: 3.5rem; 
+            margin-bottom: 20px;
+            animation: float 4s ease-in-out infinite;
+            filter: drop-shadow(0 5px 15px rgba(255,255,255,0.3));
+        }
+        h1 { 
+            font-size: 2.5rem; 
+            margin-bottom: 15px; 
+            font-weight: 300;
+            background: linear-gradient(45deg, #9370DB, #FFB6C1, #9370DB);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: titleGlow 3s ease-in-out infinite;
+        }
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 15px;
+            animation: fadeIn 2s ease-out;
+        }
+        .reasons-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin-bottom: 35px;
+            max-height: 450px;
+            overflow-y: auto;
+            padding: 15px;
+        }
+        .reason {
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+            padding: 18px;
+            border-radius: 15px;
+            text-align: left;
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.4s ease;
+            font-size: 1rem;
+            line-height: 1.6;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: reasonAppear 0.8s ease-out forwards;
+        }
+        .reason:hover {
+            background: linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0.1));
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        .reason-number {
+            display: inline-block;
+            background: linear-gradient(135deg, #9370DB, #FFB6C1);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            margin-right: 12px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            animation: numberPulse 2s ease-in-out infinite;
+        }
+        .btn { 
+            background: rgba(255,255,255,0.25); 
+            color: white; 
+            border: none; 
+            padding: 14px 30px; 
+            border-radius: 30px; 
+            cursor: pointer; 
+            font-size: 1.1rem;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(255,255,255,0.3);
+            margin: 8px;
+            font-weight: bold;
+            opacity: 0;
+            animation: buttonAppear 1s ease-out 2s forwards;
+        }
+        .btn:hover { 
+            background: rgba(255,255,255,0.4); 
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.3);
+        }
+        .btn-siguiente {
+            background: linear-gradient(135deg, #9370DB, #8A2BE2);
+        }
+        .btn-volver {
+            background: linear-gradient(135deg, #FFB6C1, #FF69B4);
+        }
+        
+        /* Animaciones */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-12px) rotate(2deg); }
+        }
+        
+        @keyframes titleGlow {
+            0%, 100% { text-shadow: 0 0 20px rgba(147, 112, 219, 0.5); }
+            50% { text-shadow: 0 0 30px rgba(255, 182, 193, 0.7); }
+        }
+        
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(10px); }
+            100% { opacity: 0.9; transform: translateY(0); }
+        }
+        
+        @keyframes reasonAppear {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes numberPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        @keyframes buttonAppear {
+            0% { opacity: 0; transform: translateY(15px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Scroll personalizado */
+        .reasons-container::-webkit-scrollbar {
+            width: 8px;
+        }
+        .reasons-container::-webkit-scrollbar-track {
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+        }
+        .reasons-container::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #9370DB, #FFB6C1);
+            border-radius: 10px;
+        }
+        
+        /* Efectos de partículas */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .particle {
+            position: absolute;
+            font-size: 1.2rem;
+            opacity: 0;
+            animation: particleFloat 6s linear infinite;
+        }
+        
+        @keyframes particleFloat {
+            0% { 
+                transform: translateY(100vh) translateX(0) rotate(0deg) scale(0.8);
+                opacity: 0;
+            }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.6; }
+            100% { 
+                transform: translateY(-100px) translateX(20px) rotate(180deg) scale(1);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay"></div>
+    <div class="particles" id="particles"></div>
+    
+    <div class="container">
+        <div class="header">
+            <div class="icon">💖✨</div>
+            <h1>20 Razones Especiales</h1>
+            <div class="subtitle">Detalles que hacen nuestra conexión única</div>
+        </div>
+        
+        <div class="reasons-container">
+            <div class="reason" style="animation-delay: 0.1s">
+                <span class="reason-number">1</span>
+                Escucho activamente cuando hablas, sin distracciones.
+            </div>
+            <div class="reason" style="animation-delay: 0.2s">
+                <span class="reason-number">2</span>
+                Recuerdo los detalles pequeños e importantes que me compartes.
+            </div>
+            <div class="reason" style="animation-delay: 0.3s">
+                <span class="reason-number">3</span>
+                Estoy presente en los momentos buenos, celebrando tus éxitos.
+            </div>
+            <div class="reason" style="animation-delay: 0.4s">
+                <span class="reason-number">4</span>
+                Estoy presente en los momentos malos, ofreciendo mi apoyo.
+            </div>
+            <div class="reason" style="animation-delay: 0.5s">
+                <span class="reason-number">5</span>
+                Te priorizo en mi vida de manera consciente y equilibrada.
+            </div>
+            <div class="reason" style="animation-delay: 0.6s">
+                <span class="reason-number">6</span>
+                Soy detallista; recuerdo tu postre favorito o esa canción que te gusta.
+            </div>
+            <div class="reason" style="animation-delay: 0.7s">
+                <span class="reason-number">7</span>
+                Invierto tiempo y energía en nuestra conexión.
+            </div>
+            <div class="reason" style="animation-delay: 0.8s">
+                <span class="reason-number">8</span>
+                Planifico citas o momentos pensando en lo que tú disfrutas.
+            </div>
+            <div class="reason" style="animation-delay: 0.9s">
+                <span class="reason-number">9</span>
+                Te doy tu espacio cuando lo necesitas, sin presionar.
+            </div>
+            <div class="reason" style="animation-delay: 1.0s">
+                <span class="reason-number">10</span>
+                Apoyo tus sueños y metas personales.
+            </div>
+            <div class="reason" style="animation-delay: 1.1s">
+                <span class="reason-number">11</span>
+                Te animo cuando te sientes desmotivado.
+            </div>
+            <div class="reason" style="animation-delay: 1.2s">
+                <span class="reason-number">12</span>
+                Soy tu equipo; enfrentamos los problemas juntos.
+            </div>
+            <div class="reason" style="animation-delay: 1.3s">
+                <span class="reason-number">13</span>
+                Cumplo las promesas pequeñas (llegar a tiempo) y las grandes.
+            </div>
+            <div class="reason" style="animation-delay: 1.4s">
+                <span class="reason-number">14</span>
+                Soy iniciativa en la comunicación.
+            </div>
+            <div class="reason" style="animation-delay: 1.5s">
+                <span class="reason-number">15</span>
+                Me esfuerzo por resolver conflictos de manera sana y constructiva.
+            </div>
+            <div class="reason" style="animation-delay: 1.6s">
+                <span class="reason-number">16</span>
+                Soy flexible y estoy abierto a tus planes e ideas.
+            </div>
+            <div class="reason" style="animation-delay: 1.7s">
+                <span class="reason-number">17</span>
+                Te hago reír y busco alegrarte los días grises.
+            </div>
+            <div class="reason" style="animation-delay: 1.8s">
+                <span class="reason-number">18</span>
+                Soy cariñoso y demuestro mi afecto de forma que tú lo entiendas.
+            </div>
+            <div class="reason" style="animation-delay: 1.9s">
+                <span class="reason-number">19</span>
+                Te defiendo si es necesario.
+            </div>
+            <div class="reason" style="animation-delay: 2.0s">
+                <span class="reason-number">20</span>
+                Aprendo de las cosas que te gustan para poder compartirlas.
+            </div>
+        </div>
+        
+        <div>
+            <button class="btn btn-siguiente" onclick="goToIndex5()">Siguiente Capítulo 🌈</button>
+            <button class="btn btn-volver" onclick="goBack()">Página Anterior ↩️</button>
+        </div>
+    </div>
+
+    <script>
+        function goToIndex5() {
+            window.location.href = 'index5.html';
+        }
+        
+        function goBack() {
+            window.location.href = 'index3.html';
+        }
+
+        // Crear partículas flotantes
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 15;
+            const particleTypes = ['💕', '✨', '🌟', '💫', '🌸', '💖', '🦋'];
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.innerHTML = particleTypes[Math.floor(Math.random() * particleTypes.length)];
+                
+                const left = Math.random() * 100;
+                const delay = Math.random() * 6;
+                const duration = Math.random() * 3 + 5;
+                const size = Math.random() * 0.8 + 1;
+                
+                particle.style.left = `${left}%`;
+                particle.style.animationDelay = `${delay}s`;
+                particle.style.animationDuration = `${duration}s`;
+                particle.style.fontSize = `${size}rem`;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Inicializar efectos cuando carga la página
+        document.addEventListener('DOMContentLoaded', function() {
+            createParticles();
+        });
+    </script>
+</body>
+</html>
