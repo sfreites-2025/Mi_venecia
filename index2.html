@@ -3,329 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nuestro Mundo Juntos 🌟</title>
+    <title>Nuestro Mundo Juntos</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Georgia', 'Times New Roman', serif;
-            min-height: 100vh;
-            background: #000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Georgia', serif; 
+            min-height: 100vh; 
+            background: #000; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
             padding: 20px;
-        }
-
-        /* Fondo romántico */
-        .background-image {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background-image: url('https://images.unsplash.com/photo-1518837695005-2083093ee35b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
-
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, rgba(147, 112, 219, 0.3), rgba(255, 182, 193, 0.3));
-            z-index: -1;
-        }
-
-        /* Contenedor principal */
-        .page-container {
-            position: relative;
-            z-index: 2;
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            width: 100%;
-            max-width: 1100px;
-            gap: 40px;
         }
-
-        .main-content {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(15px);
-            border-radius: 20px;
-            padding: 40px 35px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-            width: 100%;
-            max-width: 500px;
-        }
-
-        .main-icon {
-            font-size: 4rem;
-            margin-bottom: 20px;
-            filter: drop-shadow(0 5px 15px rgba(147, 112, 219, 0.5));
-        }
-
-        .main-title {
-            font-size: 2.2rem;
-            margin-bottom: 25px;
-            font-weight: 300;
-            text-shadow: 0 3px 10px rgba(0,0,0,0.6);
-            background: linear-gradient(45deg, #9370DB, #FFB6C1, #9370DB);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .content-box {
-            background: rgba(255, 255, 255, 0.08);
-            border-radius: 12px;
-            padding: 25px;
-            margin: 25px 0;
-            border-left: 3px solid #9370DB;
-        }
-
-        .content-text {
-            font-size: 1.2rem;
-            line-height: 1.7;
-            color: #f8f9fa;
-            text-shadow: 0 2px 6px rgba(0,0,0,0.6);
-            font-style: italic;
-        }
-
-        .text-line {
-            display: block;
-            margin-bottom: 12px;
-        }
-
-        .page-signature {
-            font-size: 1.3rem;
-            margin-top: 25px;
-            color: #FFD700;
-            font-weight: bold;
-            text-shadow: 0 2px 8px rgba(255, 215, 0, 0.6);
-        }
-
-        /* Panel derecho */
-        .side-content {
-            width: 100%;
-            max-width: 450px;
-        }
-
-        .side-image {
-            width: 100%;
-            height: 300px;
-            border-radius: 20px;
-            background: linear-gradient(135deg, rgba(147, 112, 219, 0.2), rgba(255, 182, 193, 0.2));
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 5rem;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        .container { 
+            background: rgba(255,255,255,0.1); 
             backdrop-filter: blur(10px);
+            border-radius: 15px; 
+            padding: 30px; 
+            max-width: 600px; 
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
-
-        .side-quote {
-            margin-top: 25px;
-            font-style: italic;
-            font-size: 1.1rem;
-            color: #f8f9fa;
-            text-shadow: 0 2px 6px rgba(0,0,0,0.6);
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.08);
-            border-radius: 12px;
-            border-right: 3px solid #FFD700;
+        .icon { font-size: 2rem; margin-bottom: 15px; }
+        h1 { font-size: 1.8rem; margin-bottom: 20px; font-weight: 300; }
+        .message { 
+            font-size: 1rem; 
+            line-height: 1.6; 
+            margin-bottom: 20px;
+            text-align: left;
         }
-
-        /* Botones */
-        .action-buttons {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            margin-top: 25px;
-        }
-
-        .action-btn {
-            background: linear-gradient(135deg, #9370DB, #8A2BE2);
-            color: white;
-            border: none;
-            padding: 12px 25px;
+        .btn { 
+            background: rgba(255,255,255,0.2); 
+            color: white; 
+            border: none; 
+            padding: 10px 20px; 
+            border-radius: 20px; 
+            cursor: pointer; 
             font-size: 1rem;
-            border-radius: 20px;
-            cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 6px 20px rgba(147, 112, 219, 0.4);
-            font-weight: bold;
         }
-
-        .action-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(147, 112, 219, 0.6);
-            background: linear-gradient(135deg, #9B7FD9, #9932CC);
-        }
-
-        .back-btn {
-            background: linear-gradient(135deg, #FFB6C1, #FF69B4);
-        }
-
-        .back-btn:hover {
-            background: linear-gradient(135deg, #FFC0CB, #FF1493);
-        }
-
-        .next-btn {
-            background: linear-gradient(135deg, #98FB98, #32CD32);
-        }
-
-        .next-btn:hover {
-            background: linear-gradient(135deg, #90EE90, #00FF00);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .page-container {
-                flex-direction: column;
-                gap: 20px;
-            }
-            
-            .side-content {
-                max-width: 500px;
-            }
-        }
+        .btn:hover { background: rgba(255,255,255,0.3); }
     </style>
 </head>
 <body>
-    <!-- Fondo romántico -->
-    <div class="background-image"></div>
-    <div class="overlay"></div>
-
-    <!-- Contenido principal -->
-    <div class="page-container">
-        <!-- Contenido principal -->
-        <div class="main-content">
-            <div class="main-icon">✨🌟</div>
-            <h1 class="main-title">Nuestro Mundo Juntos</h1>
-            
-            <div class="content-box">
-                <div class="content-text">
-                    <span class="text-line">
-                        Hay más de doscientas razones para confiar en mí,
-                    </span>
-                    <span class="text-line">
-                        y todas se entrelazan en una sola promesa de integridad
-                    </span>
-                    <span class="text-line">
-                        y compromiso. La primera cien se forjan en la coherencia
-                    </span>
-                    <span class="text-line">
-                        de mis acciones, en la firmeza de mi palabra que nunca
-                    </span>
-                    <span class="text-line">
-                        se quiebra y en la transparencia con la que actúo,
-                    </span>
-                    <span class="text-line">
-                        donde cada decisión está guiada por la ética y el respeto.
-                    </span>
-                    <span class="text-line">
-                        La segunda cien anidan en mi capacidad de escucha activa,
-                    </span>
-                    <span class="text-line">
-                        en la empatía que me permite entender tus necesidades
-                    </span>
-                    <span class="text-line">
-                        más allá de las palabras y en la resiliencia para superar
-                    </span>
-                    <span class="text-line">
-                        obstáculos a tu lado, sin rendirme. Pero la razón número
-                    </span>
-                    <span class="text-line">
-                        doscientos uno, la más importante, es que mi lealtad
-                    </span>
-                    <span class="text-line">
-                        no es una cifra, sino un principio inquebrantable;
-                    </span>
-                    <span class="text-line">
-                        confiar en mí es apostar por un aliado que no te fallará,
-                    </span>
-                    <span class="text-line">
-                        porque tu éxito y tu bienestar son, en definitiva,
-                    </span>
-                    <span class="text-line">
-                        también los míos.
-                    </span>
-                </div>
-            </div>
-
-            <div class="page-signature">
-                Eres mi constelación favorita 💫
-            </div>
-
-            <div class="action-buttons">
-                <button class="action-btn" onclick="showMagic()">
-                    Magia ✨
-                </button>
-                <button class="action-btn back-btn" onclick="goBack()">
-                    Volver 💕
-                </button>
-                <button class="action-btn next-btn" onclick="goToNext()">
-                    Siguiente 🌟
-                </button>
-            </div>
+    <div class="container">
+        <div class="icon">✨🌟</div>
+        <h1>Nuestro Mundo Juntos</h1>
+        <div class="message">
+            Hay más de doscientas razones para confiar en mí, y todas se entrelazan en una sola promesa de integridad y compromiso. La primera cien se forjan en la coherencia de mis acciones, en la firmeza de mi palabra que nunca se quiebra y en la transparencia con la que actúo, donde cada decisión está guiada por la ética y el respeto. La segunda cien anidan en mi capacidad de escucha activa, en la empatía que me permite entender tus necesidades más allá de las palabras y en la resiliencia para superar obstáculos a tu lado, sin rendirme. Pero la razón número doscientos uno, la más importante, es que mi lealtad no es una cifra, sino un principio inquebrantable; confiar en mí es apostar por un aliado que no te fallará, porque tu éxito y tu bienestar son, en definitiva, también los míos.
         </div>
-
-        <!-- Panel derecho -->
-        <div class="side-content">
-            <div class="side-image">
-                🌙⭐
-            </div>
-            <div class="side-quote">
-                "En la galaxia de mi vida, tú eres la estrella más brillante. Tu amor ilumina cada rincón de mi existencia y hace que cada día valga la pena."
-            </div>
-        </div>
+        <button class="btn" onclick="alert('✨ Eres especial ✨')">Magia ✨</button>
     </div>
-
-    <script>
-        // Función para mostrar mensaje mágico
-        function showMagic() {
-            const btn = document.querySelector('.action-btn');
-            btn.textContent = '¡Mágico! ✨';
-            
-            setTimeout(() => {
-                btn.textContent = 'Magia ✨';
-                alert('🌟 ¡Eres la magia que ilumina mi vida! 💖');
-            }, 1000);
-        }
-
-        // Volver a la página anterior
-        function goBack() {
-            const btn = document.querySelector('.back-btn');
-            btn.textContent = 'Regresando...';
-            
-            setTimeout(() => {
-                window.location.href = 'index.html';
-            }, 1000);
-        }
-
-        // Ir a la siguiente página
-        function goToNext() {
-            const btn = document.querySelector('.next-btn');
-            btn.textContent = 'Avanzando...';
-            
-            setTimeout(() => {
-                window.location.href = 'index3.html';
-            }, 1000);
-        }
-    </script>
 </body>
 </html>
