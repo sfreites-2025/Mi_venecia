@@ -14,18 +14,32 @@
             justify-content: center; 
             align-items: center; 
             padding: 20px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background-image: url('https://images.unsplash.com/photo-1544636331-e26879cd4d9b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
             color: white;
         }
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1;
+        }
         .container { 
-            background: rgba(255,255,255,0.1); 
-            backdrop-filter: blur(10px);
+            background: rgba(255,255,255,0.15); 
+            backdrop-filter: blur(15px);
             border-radius: 15px; 
             padding: 30px; 
             max-width: 600px; 
             text-align: center;
-            border: 1px solid rgba(255,255,255,0.2);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.3);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            position: relative;
+            z-index: 2;
         }
         .icon { font-size: 2rem; margin-bottom: 15px; }
         h1 { font-size: 1.8rem; margin-bottom: 20px; font-weight: 300; }
@@ -36,7 +50,7 @@
             text-align: left;
         }
         .btn { 
-            background: rgba(255,255,255,0.2); 
+            background: rgba(255,255,255,0.25); 
             color: white; 
             border: none; 
             padding: 10px 20px; 
@@ -44,11 +58,16 @@
             cursor: pointer; 
             font-size: 1rem;
             transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.3);
         }
-        .btn:hover { background: rgba(255,255,255,0.3); }
+        .btn:hover { 
+            background: rgba(255,255,255,0.4); 
+            transform: translateY(-2px);
+        }
     </style>
 </head>
 <body>
+    <div class="overlay"></div>
     <div class="container">
         <div class="icon">✨🌟</div>
         <h1>Nuestro Mundo Juntos</h1>
