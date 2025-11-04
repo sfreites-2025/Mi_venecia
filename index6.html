@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Razones de Equipo - Nuestro Mundo</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Georgia', serif; 
+            min-height: 100vh; 
+            background: #000; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            padding: 20px;
+            background-image: url('https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+        }
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(255, 69, 0, 0.3), rgba(0, 100, 0, 0.3));
+            z-index: 1;
+        }
+        .container { 
+            background: rgba(255,255,255,0.15); 
+            backdrop-filter: blur(20px);
+            border-radius: 25px; 
+            padding: 45px; 
+            max-width: 800px; 
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.25);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+            position: relative;
+            z-index: 2;
+        }
+        .header {
+            margin-bottom: 40px;
+        }
+        .icon { 
+            font-size: 4rem; 
+            margin-bottom: 25px;
+            animation: volleyballBounce 3s ease-in-out infinite;
+            filter: drop-shadow(0 5px 15px rgba(255,255,255,0.4));
+        }
+        h1 { 
+            font-size: 2.8rem; 
+            margin-bottom: 15px; 
+            font-weight: 300;
+            background: linear-gradient(45deg, #FF4500, #32CD32, #FF4500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: teamGlow 3s ease-in-out infinite;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
+            animation: subtitleFade 2s ease-out;
+            font-style: italic;
+        }
+        .reasons-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 40px;
+            max-height: 500px;
+            overflow-y: auto;
+            padding: 20px;
+        }
+        .reason {
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+            padding: 20px;
+            border-radius: 18px;
+            text-align: left;
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.4s ease;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: reasonBounceIn 1s ease-out forwards;
+            position: relative;
+            overflow: hidden;
+        }
+        .reason:hover {
+            background: linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0.1));
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+        .reason:hover::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            animation: netShine 1s;
+        }
+        .reason-number {
+            display: inline-block;
+            background: linear-gradient(135deg, #FF4500, #32CD32);
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 35px;
+            margin-right: 15px;
+            font-weight: bold;
+            font-size: 1rem;
+            animation: numberBounce 2s ease-in-out infinite;
+            box-shadow: 0 4px 15px rgba(255,69,0,0.3);
+        }
+        .btn { 
+            background: rgba(255,255,255,0.25); 
+            color: white; 
+            border: none; 
+            padding: 16px 35px; 
+            border-radius: 35px; 
+            cursor: pointer; 
+            font-size: 1.2rem;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(255,255,255,0.3);
+            margin: 10px;
+            font-weight: bold;
+            opacity: 0;
+            animation: buttonAppear 1s ease-out 2s forwards;
+            position: relative;
+            overflow: hidden;
+        }
+        .btn:hover { 
+            background: rgba(255,255,255,0.4); 
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.3);
+        }
+        .btn-siguiente {
+            background: linear-gradient(135deg, #FF4500, #FF6347);
+        }
+        .btn-volver {
+            background: linear-gradient(135deg, #32CD32, #228B22);
+        }
+
+        /* Animaciones Voleibol */
+        @keyframes volleyballBounce {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            25% { transform: translateY(-20px) rotate(10deg); }
+            50% { transform: translateY(-10px) rotate(-5deg); }
+            75% { transform: translateY(-15px) rotate(5deg); }
+        }
+
+        @keyframes teamGlow {
+            0%, 100% { 
+                text-shadow: 0 0 25px rgba(255,69,0,0.6),
+                           0 0 40px rgba(50,205,50,0.4);
+            }
+            50% { 
+                text-shadow: 0 0 35px rgba(255,69,0,0.8),
+                           0 0 60px rgba(50,205,50,0.6);
+            }
+        }
+
+        @keyframes reasonBounceIn {
+            0% { opacity: 0; transform: translateY(30px) scale(0.9); }
+            70% { transform: translateY(-10px) scale(1.05); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        @keyframes numberBounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        @keyframes netShine {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        @keyframes buttonAppear {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes subtitleFade {
+            0% { opacity: 0; transform: translateY(15px); }
+            100% { opacity: 0.9; transform: translateY(0); }
+        }
+
+        /* Efecto red de voleibol */
+        .volleyball-net {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(90deg, transparent 49%, rgba(255,255,255,0.1) 50%, transparent 51%),
+                linear-gradient(0deg, transparent 49%, rgba(255,255,255,0.1) 50%, transparent 51%);
+            background-size: 50px 50px;
+            opacity: 0.1;
+            z-index: 1;
+            animation: netPulse 4s ease-in-out infinite;
+        }
+
+        @keyframes netPulse {
+            0%, 100% { opacity: 0.05; }
+            50% { opacity: 0.15; }
+        }
+
+        /* Pelotas de voleibol flotantes */
+        .floating-balls {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .floating-ball {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0;
+            animation: ballFloat 8s linear infinite;
+        }
+
+        @keyframes ballFloat {
+            0% { 
+                transform: translateY(100vh) translateX(0) rotate(0deg) scale(0.8);
+                opacity: 0;
+            }
+            10% { opacity: 0.3; }
+            90% { opacity: 0.3; }
+            100% { 
+                transform: translateY(-100px) translateX(20px) rotate(180deg) scale(1);
+                opacity: 0;
+            }
+        }
+
+        /* Scroll personalizado */
+        .reasons-grid::-webkit-scrollbar {
+            width: 10px;
+        }
+        .reasons-grid::-webkit-scrollbar-track {
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+        }
+        .reasons-grid::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #FF4500, #32CD32);
+            border-radius: 15px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .reasons-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay"></div>
+    <div class="volleyball-net"></div>
+    <div class="floating-balls" id="floatingBalls"></div>
+    
+    <div class="container">
+        <div class="header">
+            <div class="icon">🏐✨</div>
+            <h1>Razones de Equipo</h1>
+            <div class="subtitle">Jugando en el mismo equipo de la vida</div>
+        </div>
+        
+        <div class="reasons-grid">
+            <div class="reason" style="animation-delay: 0.1s">
+                <span class="reason-number">61</span>
+                Aporto paz a tu vida, no drama innecesario.
+            </div>
+            <div class="reason" style="animation-delay: 0.2s">
+                <span class="reason-number">62</span>
+                Valoro y respeto a tu familia y amigos.
+            </div>
+            <div class="reason" style="animation-delay: 0.3s">
+                <span class="reason-number">63</span>
+                Te veo como un igual en la relación.
+            </div>
+            <div class="reason" style="animation-delay: 0.4s">
+                <span class="reason-number">64</span>
+                Construyo contigo, no en mi contra.
+            </div>
+            <div class="reason" style="animation-delay: 0.5s">
+                <span class="reason-number">65</span>
+                Perdono y pido perdón genuinamente.
+            </div>
+            <div class="reason" style="animation-delay: 0.6s">
+                <span class="reason-number">66</span>
+                Soy tu confidente; puedes contarme anything sin miedo.
+            </div>
+            <div class="reason" style="animation-delay: 0.7s">
+                <span class="reason-number">67</span>
+                Nuestra relación es un espacio seguro para ser vulnerables.
+            </div>
+            <div class="reason" style="animation-delay: 0.8s">
+                <span class="reason-number">68</span>
+                Te elijo todos los días, con acciones y decisiones.
+            </div>
+            <div class="reason" style="animation-delay: 0.9s">
+                <span class="reason-number">69</span>
+                Me haces querer ser una mejor persona.
+            </div>
+            <div class="reason" style="animation-delay: 1.0s">
+                <span class="reason-number">70</span>
+                Disfruto de la simpleza de estar a tu lado.
+            </div>
+            <div class="reason" style="animation-delay: 1.1s">
+                <span class="reason-number">71</span>
+                Protejo la intimidad y privacidad de nuestra relación.
+            </div>
+            <div class="reason" style="animation-delay: 1.2s">
+                <span class="reason-number">72</span>
+                Soy paciente con tus procesos y tus tiempos.
+            </div>
+            <div class="reason" style="animation-delay: 1.3s">
+                <span class="reason-number">73</span>
+                Veo un futuro a tu lado y trabajo para ello.
+            </div>
+            <div class="reason" style="animation-delay: 1.4s">
+                <span class="reason-number">74</span>
+                Mi compromiso contigo es incondicional, no transaccional.
+            </div>
+            <div class="reason" style="animation-delay: 1.5s">
+                <span class="reason-number">75</span>
+                Eres mi prioridad, no una opción.
+            </div>
+            <div class="reason" style="animation-delay: 1.6s">
+                <span class="reason-number">76</span>
+                Respeto nuestro vínculo por encima de todo.
+            </div>
+            <div class="reason" style="animation-delay: 1.7s">
+                <span class="reason-number">77</span>
+                Soy consistente en mi cariño hacia ti.
+            </div>
+            <div class="reason" style="animation-delay: 1.8s">
+                <span class="reason-number">78</span>
+                Aprendo el lenguaje de tu corazón.
+            </div>
+            <div class="reason" style="animation-delay: 1.9s">
+                <span class="reason-number">79</span>
+                Tu felicidad contribuye a la mía.
+            </div>
+            <div class="reason" style="animation-delay: 2.0s">
+                <span class="reason-number">80</span>
+                Soy tu lugar de calma en un mundo caótico.
+            </div>
+        </div>
+        
+        <div>
+            <button class="btn btn-siguiente" onclick="goToIndex7()">Siguiente Set 🏐</button>
+            <button class="btn btn-volver" onclick="goBack()">Set Anterior ↩️</button>
+        </div>
+    </div>
+
+    <script>
+        function goToIndex7() {
+            window.location.href = 'index7.html';
+        }
+        
+        function goBack() {
+            window.location.href = 'index5.html';
+        }
+
+        // Crear pelotas de voleibol flotantes
+        function createFloatingBalls() {
+            const ballsContainer = document.getElementById('floatingBalls');
+            const ballCount = 8;
+            
+            for (let i = 0; i < ballCount; i++) {
+                const ball = document.createElement('div');
+                ball.className = 'floating-ball';
+                ball.innerHTML = '🏐';
+                
+                const left = Math.random() * 100;
+                const delay = Math.random() * 6;
+                const duration = Math.random() * 4 + 6;
+                const size = Math.random() * 0.5 + 1.5;
+                
+                ball.style.left = `${left}%`;
+                ball.style.animationDelay = `${delay}s`;
+                ball.style.animationDuration = `${duration}s`;
+                ball.style.fontSize = `${size}rem`;
+                
+                ballsContainer.appendChild(ball);
+            }
+        }
+
+        // Inicializar efectos cuando carga la página
+        document.addEventListener('DOMContentLoaded', function() {
+            createFloatingBalls();
+        });
+    </script>
+</body>
+</html>
