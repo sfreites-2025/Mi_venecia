@@ -77,38 +77,54 @@
 
         .birthday-message {
             display: none;
-            padding: 40px 30px;
+            padding: 40px;
             background: rgba(255, 255, 255, 0.1);
             border-radius: 20px;
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            max-width: 600px;
+            max-width: 800px;
             width: 90%;
             margin: 20px;
+            position: relative;
+        }
+
+        .message-content {
+            display: flex;
+            gap: 30px;
+            align-items: flex-start;
+        }
+
+        .main-message {
+            flex: 3;
+            text-align: left;
+        }
+
+        .side-message {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 4px solid #ff6b6b;
+            font-style: italic;
+            font-size: 1.1em;
+            line-height: 1.6;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
         }
 
         h1 {
             font-size: 2.5em;
             margin-bottom: 30px;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            text-align: center;
         }
 
         p {
             font-size: 1.2em;
             line-height: 1.7;
             margin-bottom: 20px;
-            text-align: justify;
-        }
-
-        .final-message {
-            font-style: italic;
-            margin-top: 30px;
-            padding-top: 25px;
-            border-top: 2px solid rgba(255, 255, 255, 0.3);
-            font-size: 1.3em;
-            text-align: center;
-            font-weight: 600;
         }
 
         .hearts {
@@ -160,6 +176,15 @@
         }
 
         @media (max-width: 768px) {
+            .message-content {
+                flex-direction: column;
+            }
+            
+            .side-message {
+                border-left: none;
+                border-top: 4px solid #ff6b6b;
+            }
+            
             h1 {
                 font-size: 2em;
             }
@@ -188,14 +213,18 @@
     <!-- Mensaje de cumpleaños -->
     <div class="birthday-message" id="birthdayMessage">
         <h1>🎉 ¡Feliz Cumpleaños! 🎂</h1>
-        <p>Feliz cumpleaños a la persona que ilumina mis días. Hoy no solo celebramos tu existencia, sino la suerte que tengo de conocerte. Que este nuevo año de vida te traiga todas las sonrisas que mereces, todas las metas que sueñas y ese brillo único que solo tú tienes.</p>
-        
-        <p>Me gustaría ser parte de tu día hoy y de muchos más, porque contigo hasta el cumpleaños más simple se sentiría mágico. Que soples velas con la certeza de que hay alguien aquí que te admira más de lo que las palabras podrían decir.</p>
-        
-        <p>¡Feliz cumpleaños princesa! Ojalá este día esté lleno de momentos tan especiales como tú</p>
-        
-        <div class="final-message">
-            Esto es para ti, para nuestro amor y para tus recuerdos, que conmigo todos van a ser únicos y verdaderos, Te amo mi amor hermoso...
+        <div class="message-content">
+            <div class="main-message">
+                <p>Feliz cumpleaños a la persona que ilumina mis días. Hoy no solo celebramos tu existencia, sino la suerte que tengo de conocerte. Que este nuevo año de vida te traiga todas las sonrisas que mereces, todas las metas que sueñas y ese brillo único que solo tú tienes.</p>
+                
+                <p>Me gustaría ser parte de tu día hoy y de muchos más, porque contigo hasta el cumpleaños más simple se sentiría mágico. Que soples velas con la certeza de que hay alguien aquí que te admira más de lo que las palabras podrían decir.</p>
+                
+                <p>¡Feliz cumpleaños princesa! Ojalá este día esté lleno de momentos tan especiales como tú</p>
+            </div>
+            
+            <div class="side-message">
+                Esto es para ti, para nuestro amor y para tus recuerdos, que conmigo todos van a ser únicos y verdaderos, Te amo mi amor hermoso...
+            </div>
         </div>
     </div>
 
@@ -229,7 +258,6 @@
                         heart.style.animationDelay = Math.random() * 1 + 's';
                         document.body.appendChild(heart);
                         
-                        // Remover después de la animación
                         setTimeout(() => {
                             if (heart.parentNode) {
                                 heart.remove();
@@ -255,11 +283,9 @@
                     createHearts();
                     
                     setTimeout(() => {
-                        // Ocultar pantalla de carga
                         loadingScreen.style.opacity = '0';
                         setTimeout(() => {
                             loadingScreen.style.display = 'none';
-                            // Mostrar mensaje de cumpleaños
                             birthdayMessage.style.display = 'block';
                             birthdayMessage.classList.add('fade-in');
                         }, 1000);
