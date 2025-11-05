@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>You and Me Forever</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 900px;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.92);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        h1 {
+            color: #5d7bdb;
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        h1:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 10%;
+            width: 80%;
+            height: 3px;
+            background: linear-gradient(to right, transparent, #5d7bdb, transparent);
+        }
+        
+        .subtitle {
+            color: #666;
+            font-size: 1.2rem;
+            margin-top: 15px;
+        }
+        
+        .section {
+            display: none;
+            animation: fadeIn 0.8s ease forwards;
+        }
+        
+        .section.active {
+            display: block;
+        }
+        
+        .reasons-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .reason-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border-left: 4px solid #5d7bdb;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .reason-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .reason-number {
+            background: #5d7bdb;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1rem;
+            flex-shrink: 0;
+            margin-right: 15px;
+        }
+        
+        .reason-text {
+            font-size: 1.1rem;
+            line-height: 1.5;
+            color: #444;
+            flex: 1;
+        }
+        
+        .message-container {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+            border-radius: 15px;
+            margin: 30px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .message-text {
+            font-size: 1.3rem;
+            line-height: 1.6;
+            color: #444;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+        
+        .signature {
+            font-size: 1.1rem;
+            color: #5d7bdb;
+            font-weight: 600;
+            margin-top: 20px;
+        }
+        
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn-prev {
+            background: #6c757d;
+            color: white;
+        }
+        
+        .btn-next {
+            background: #5d7bdb;
+            color: white;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-prev:hover {
+            background: #5a6268;
+        }
+        
+        .btn-next:hover {
+            background: #4a69bb;
+        }
+        
+        .floating-element {
+            position: absolute;
+            z-index: 0;
+            opacity: 0.1;
+        }
+        
+        .circle {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: #5d7bdb;
+        }
+        
+        .circle-1 { top: 10%; left: 5%; }
+        .circle-2 { bottom: 15%; right: 7%; }
+        
+        .triangle {
+            width: 0;
+            height: 0;
+            border-left: 50px solid transparent;
+            border-right: 50px solid transparent;
+            border-bottom: 87px solid #5d7bdb;
+        }
+        
+        .triangle-1 { top: 20%; right: 10%; transform: rotate(45deg); }
+        .triangle-2 { bottom: 10%; left: 8%; transform: rotate(-30deg); }
+        
+        .progress-bar {
+            height: 5px;
+            background: #e0e0e0;
+            border-radius: 5px;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+        
+        .progress {
+            height: 100%;
+            background: #5d7bdb;
+            width: 33.33%;
+            transition: width 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @media (max-width: 768px) {
+            .reasons-container {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .container {
+                padding: 25px;
+            }
+            
+            .reason-card {
+                flex-direction: column;
+            }
+            
+            .reason-number {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+            
+            .reason-text {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="floating-element circle circle-1"></div>
+        <div class="floating-element circle circle-2"></div>
+        <div class="floating-element triangle triangle-1"></div>
+        <div class="floating-element triangle triangle-2"></div>
+        
+        <div class="header">
+            <h1>Razones 101-140</h1>
+            <p class="subtitle">Más motivos por los que puedes confiar en mí</p>
+        </div>
+        
+        <div class="progress-bar">
+            <div class="progress" id="progress"></div>
+        </div>
+        
+        <!-- Primera sección -->
+        <div class="section active" id="section1">
+            <div class="reasons-container">
+                <div class="reason-card">
+                    <div class="reason-number">101</div>
+                    <p class="reason-text">Elimino las ambigüedades con otras personas en mi vida.</p>
+                </div>
+                
+                <div class="reason-card">
+                    <div class="reason-number">102</div>
+                    <p class="reason-text">Soy claro sobre el estado de nuestra relación.</p>
+                </div>
+                
+                <div class="reason-card">
+                    <div class="reason-number">103</div>
+                    <p class="reason-text">No coqueteo con otras personas.</p>
+                </div>
+                
+                <div class="reason-card">
+                    <div class="reason-number">104</div>
+                    <p class="reason-text">Guardo tus secretos y confidencias con absoluto respeto.</p>
+                </div>
+                
+                <div class="reason-card">
+                    <div class="reason-number">105</div>
+                    <p class="reason-text">No tengo un "plan de respaldo" por si nuestra relación falla.</p>
+                </div>
+                
+                <div class="reason-card">
+                    <div class="reason-number">106</div>
+                    <p class="reason-text">Elijo trabajar en la relación en lugar de huir ante el primer problema.</p>
+                </div>
+                
+                <div class="reason-card">
+                    <div class="reason-number">107</div>
+                    <p class="reason-text">Soy tu aliado y no tu competidor.</p>
+                </div>
+                
+                <div class="reason-card">
+                    <div class="reason-number">108</div>
+                    <p class="reason-text">Te apoyo en público y en privado.</p>
+                </div>
+                
+                <div class="reason-card">
+                    <div class="reason-number">109</div>
+                    <p class="reason-text">Hago sacrificios por nuestro bienestar mutuo.</p>
+                </div>
+                
+                <div class="reason-card">
+                    <div class="reason-number">110</div>
+                    <p class="reason-text">Demuestro mi compromiso con la relación de forma constante.</p>
+                </div>
+                
+                <div class="reason-card">
+                    <div class="reason-number">111</div>
+                    <p class="reason-text">Soy leal a mis promesas y a mi palabra.</p>
+                </div>
+                
+                <div class="reason-card">
+                    <div class="reason-number">112</div>
+                    <p class="reason-text">Sabes que soy tu refugio seguro.</p>
+                </div>
+                
+                <div class="reason-card">
+                    <div class="reason-number">113</div>
+                    <p class="reason-text">Pongo el bienestar de la relación por encima del orgullo personal.</p>
+                </div>
+                
+                <div class="reason-card">
+                    <div class="reason-number">114</div>
+                    <p class="reason-text">Lucho contigo contra el problema, no contra ti.</p>
+                </div>
+                
+                <div class="reason-card">
+                    <div class="reason-number">115</div>
+                    <p class="reason-text">Soy atento con tu familia.</p>
+                </div>
+                
+                <div class="reason-card">
+                    <div class="reason-number">116</div>
+                    <p class="reason-text">Tengo buen sentido del humor.</p>
+                </div>
+                
+                <div class="reason-card">
+                    <div class="reason-number">117</div>
+                    <p class="reason-text">No bebo en exceso.</p>
+                </div>
+                
+                <div class="reason-card">
+                    <div class="reason-number">118</div>
+                    <p class="reason-text">No tengo adicciones no controladas.</p>
+                </div>
+                
+                <div class="reason-card">
+                    <div class="reason-number">119</div>
+                    <p class="reason-text">Soy una persona curiosa y abierta a aprender.</p>
+                </div>
+                
+                <div class="reason-card">
+                    <div class="reason-number">120</div>
+                    <p class="reason-text">Huelo bien y cuido mi aseo personal.</p>
+                </div>
+            </div>
+            
+            <div class="navigation">
+                <button class="btn btn-prev" onclick="window.location.href='index7.html'">
+                    <span>←</span> Anterior
+                </button>
+                <button class="btn btn-next" onclick="showSection(2)">
+                    Siguiente <span>→</span>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Segunda sección -->
+        <div class="section" id="section2">
+            <div class="reasons-container">
+                <div class="reason-card">
+                    <div class="reason-number">121</div>
+                    <p class="reason-text">Soy paciente en el tráfico o en situaciones estresantes.</p>
+                </div>
+                
+                <div class="reason-card">
+                    <div class="reason-number">122</div>
+                    <p class="reason-text">Cuido mi salud.</p>
+                </div>
+                
+                <div class="reason-card">
+                    <div class="reason-number">123</div>
+                    <p class="reason-text">No soy impulsivo con el dinero.</p>
+                </div>
+                
+                <div class="reason-card">
+                    <div class="reason-number">124</div>
+                    <p class="reason-text">Soy un buen oyente de música o arte.</p>
+                </div>
+                
+                <div class="reason-card">
+                    <div class="reason-number">125</div>
+                    <p class="reason-text">Soy amable con la gente que me sirve (camareros, dependientes).</p>
+                </div>
+                
+                <div class="reason-card">
+                    <div class="reason-number">126</div>
+                    <p class="reason-text">Me preocupo por el medio ambiente.</p>
+                </div>
+                
+                <div class="reason-card">
+                    <div class="reason-number">127</div>
+                    <p class="reason-text">No soy una persona quejicosa.</p>
+                </div>
+                
+                <div class="reason-card">
+                    <div class="reason-number">128</div>
+                    <p class="reason-text">Ofrezco ayuda a extraños.</p>
+                </div>
+                
+                <div class="reason-card">
+                    <div class="reason-number">129</div>
+                    <p class="reason-text">Soy bueno con los niños.</p>
+                </div>
+                
+                <div class="reason-card">
+                    <div class="reason-number">130</div>
+                    <p class="reason-text">Soy bueno con los animales.</p>
+                </div>
+                
+                <div class="reason-card">
+                    <div class="reason-number">131</div>
+                    <p class="reason-text">Soy agradecido.</p>
+                </div>
+                
+                <div class="reason-card">
+                    <div class="reason-number">132</div>
+                    <p class="reason-text">Soy proactivo y tomo iniciativas.</p>
+                </div>
+                
+                <div class="reason-card">
+                    <div class="reason-number">133</div>
+                    <p class="reason-text">Soy optimista pero realista.</p>
+                </div>
+                
+                <div class="reason-card">
+                    <div class="reason-number">134</div>
+                    <p class="reason-text">Me disculpo cuando me equivoco.</p>
+                </div>
+                
+                <div class="reason-card">
+                    <div class="reason-number">135</div>
+                    <p class="reason-text">Soy adaptable a los cambios de planes.</p>
+                </div>
+                
+                <div class="reason-card">
+                    <div class="reason-number">136</div>
+                    <p class="reason-text">Soy puntual (por respeto a tu tiempo).</p>
+                </div>
+                
+                <div class="reason-card">
+                    <div class="reason-number">137</div>
+                    <p class="reason-text">Tengo ambiciones sanas.</p>
+                </div>
+                
+                <div class="reason-card">
+                    <div class="reason-number">138</div>
+                    <p class="reason-text">Soy seguro de mí mismo, no arrogante.</p>
+                </div>
+                
+                <div class="reason-card">
+                    <div class="reason-number">139</div>
+                    <p class="reason-text">Creo en la importancia de la salud mental.</p>
+                </div>
+                
+                <div class="reason-card">
+                    <div class="reason-number">140</div>
+                    <p class="reason-text">Puedo hablar sobre mis inseguridades.</p>
+                </div>
+            </div>
+            
+            <div class="navigation">
+                <button class="btn btn-prev" onclick="showSection(1)">
+                    <span>←</span> Anterior
+                </button>
+                <button class="btn btn-next" onclick="showSection(3)">
+                    Siguiente <span>→</span>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Tercera sección -->
+        <div class="section" id="section3">
+            <div class="message-container">
+                <p class="message-text">
+                    "Hay más de 200 razones por las cuales puedes confiar en mí, me dijiste que las escribiera y lo hice, porque te lo mereces y mereces ser amada y querida. Contigo encontré emociones que creí que no iban a volver a pasar por mi sistema de nuevo y aunque la vida sea mala, creo que cuando te enviaron a ti, se apiadaron de mí, no te estreses, aún falta más"
+                </p>
+                <div class="signature">- Para ti, con todo mi cariño</div>
+            </div>
+            
+            <div class="navigation">
+                <button class="btn btn-prev" onclick="showSection(2)">
+                    <span>←</span> Anterior
+                </button>
+                <button class="btn btn-next" onclick="window.location.href='index9.html'">
+                    Siguiente <span>→</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentSection = 1;
+        
+        function showSection(sectionNumber) {
+            // Ocultar sección actual
+            document.getElementById(`section${currentSection}`).classList.remove('active');
+            
+            // Mostrar nueva sección
+            document.getElementById(`section${sectionNumber}`).classList.add('active');
+            
+            // Actualizar barra de progreso
+            const progress = document.getElementById('progress');
+            progress.style.width = `${(sectionNumber / 3) * 100}%`;
+            
+            currentSection = sectionNumber;
+            
+            // Desplazar hacia arriba al cambiar de sección
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
