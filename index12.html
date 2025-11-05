@@ -22,6 +22,20 @@
             overflow: hidden;
         }
 
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            z-index: 1000;
+        }
+
         .container {
             text-align: center;
             width: 90%;
@@ -63,36 +77,44 @@
 
         .birthday-message {
             display: none;
-            margin-top: 30px;
-            padding: 20px;
+            padding: 40px 30px;
             background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
+            border-radius: 20px;
             backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            width: 90%;
+            margin: 20px;
         }
 
         h1 {
             font-size: 2.5em;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         p {
             font-size: 1.2em;
-            line-height: 1.6;
-            margin-bottom: 15px;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            text-align: justify;
         }
 
         .final-message {
             font-style: italic;
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.3);
+            margin-top: 30px;
+            padding-top: 25px;
+            border-top: 2px solid rgba(255, 255, 255, 0.3);
+            font-size: 1.3em;
+            text-align: center;
+            font-weight: 600;
         }
 
         .hearts {
             position: absolute;
-            width: 20px;
-            height: 20px;
+            width: 25px;
+            height: 25px;
             background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23ff6b6b"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>') no-repeat;
             opacity: 0;
         }
@@ -110,14 +132,14 @@
 
         @keyframes heart-float {
             0% {
-                transform: translateY(0) scale(0);
+                transform: translateY(100vh) scale(0) rotate(0deg);
                 opacity: 1;
             }
             50% {
                 opacity: 1;
             }
             100% {
-                transform: translateY(-100px) scale(1);
+                transform: translateY(-100px) scale(1) rotate(360deg);
                 opacity: 0;
             }
         }
@@ -125,7 +147,7 @@
         @keyframes fadeIn {
             from {
                 opacity: 0;
-                transform: translateY(20px);
+                transform: translateY(30px);
             }
             to {
                 opacity: 1;
@@ -134,46 +156,59 @@
         }
 
         .fade-in {
-            animation: fadeIn 1s ease-out;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+            
+            p {
+                font-size: 1.1em;
+            }
+            
+            .birthday-message {
+                padding: 30px 20px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="loading-bar-container">
-            <div class="loading-bar" id="loadingBar"></div>
-        </div>
-        <div class="loading-text" id="loadingText">Cargando sorpresas...</div>
-        
-        <div class="birthday-message" id="birthdayMessage">
-            <h1>🎉 ¡Feliz Cumpleaños! 🎂</h1>
-            <p>Feliz cumpleaños a la persona que ilumina mis días.<br>
-            Hoy no solo celebramos tu existencia, sino la suerte que tengo de conocerte.<br>
-            Que este nuevo año de vida te traiga todas las sonrisas que mereces,<br>
-            todas las metas que sueñas y ese brillo único que solo tú tienes.</p>
-            
-            <p>Me gustaría ser parte de tu día hoy y de muchos más,<br>
-            porque contigo hasta el cumpleaños más simple se sentiría mágico.<br>
-            Que soples velas con la certeza de que hay alguien aquí<br>
-            que te admira más de lo que las palabras podrían decir.</p>
-            
-            <p>¡Feliz cumpleaños princesa! Ojalá este día esté lleno de momentos tan especiales como tú</p>
-            
-            <div class="final-message">
-                Esto es para ti, para nuestro amor y para tus recuerdos, que conmigo todos van a ser únicos y verdaderos, Te amo mi amor hermoso...
+    <!-- Pantalla de carga -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="container">
+            <div class="loading-bar-container">
+                <div class="loading-bar" id="loadingBar"></div>
             </div>
+            <div class="loading-text" id="loadingText">Preparando algo especial...</div>
+        </div>
+    </div>
+    
+    <!-- Mensaje de cumpleaños -->
+    <div class="birthday-message" id="birthdayMessage">
+        <h1>🎉 ¡Feliz Cumpleaños! 🎂</h1>
+        <p>Feliz cumpleaños a la persona que ilumina mis días. Hoy no solo celebramos tu existencia, sino la suerte que tengo de conocerte. Que este nuevo año de vida te traiga todas las sonrisas que mereces, todas las metas que sueñas y ese brillo único que solo tú tienes.</p>
+        
+        <p>Me gustaría ser parte de tu día hoy y de muchos más, porque contigo hasta el cumpleaños más simple se sentiría mágico. Que soples velas con la certeza de que hay alguien aquí que te admira más de lo que las palabras podrían decir.</p>
+        
+        <p>¡Feliz cumpleaños princesa! Ojalá este día esté lleno de momentos tan especiales como tú</p>
+        
+        <div class="final-message">
+            Esto es para ti, para nuestro amor y para tus recuerdos, que conmigo todos van a ser únicos y verdaderos, Te amo mi amor hermoso...
         </div>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            const loadingScreen = document.getElementById('loadingScreen');
             const loadingBar = document.getElementById('loadingBar');
             const loadingText = document.getElementById('loadingText');
             const birthdayMessage = document.getElementById('birthdayMessage');
             let progress = 0;
 
             function createConfetti() {
-                for (let i = 0; i < 50; i++) {
+                for (let i = 0; i < 80; i++) {
                     const confetti = document.createElement('div');
                     confetti.className = 'confetti';
                     confetti.style.left = Math.random() * 100 + 'vw';
@@ -185,34 +220,49 @@
             }
 
             function createHearts() {
-                for (let i = 0; i < 20; i++) {
-                    const heart = document.createElement('div');
-                    heart.className = 'hearts';
-                    heart.style.left = Math.random() * 100 + 'vw';
-                    heart.style.animation = `heart-float ${Math.random() * 3 + 2}s ease-in forwards`;
-                    heart.style.animationDelay = Math.random() * 2 + 's';
-                    document.body.appendChild(heart);
-                }
+                setInterval(() => {
+                    for (let i = 0; i < 5; i++) {
+                        const heart = document.createElement('div');
+                        heart.className = 'hearts';
+                        heart.style.left = Math.random() * 100 + 'vw';
+                        heart.style.animation = `heart-float ${Math.random() * 6 + 4}s ease-in forwards`;
+                        heart.style.animationDelay = Math.random() * 1 + 's';
+                        document.body.appendChild(heart);
+                        
+                        // Remover después de la animación
+                        setTimeout(() => {
+                            if (heart.parentNode) {
+                                heart.remove();
+                            }
+                        }, 10000);
+                    }
+                }, 2000);
             }
 
             function updateProgress() {
-                progress += Math.random() * 10;
+                progress += Math.random() * 8;
                 if (progress > 100) progress = 100;
                 
                 loadingBar.style.width = progress + '%';
 
                 if (progress >= 20 && progress < 50) {
-                    loadingText.textContent = "Y aún falta algo...";
+                    loadingText.textContent = "Y aún falta algo... ✨";
                 } else if (progress >= 50 && progress < 100) {
                     loadingText.textContent = "Gracias por tanto 💖";
                 } else if (progress >= 100) {
-                    loadingText.textContent = "¡FELIZ CUMPLEAÑOS MI AMOR HERMOSO!";
+                    loadingText.textContent = "¡FELIZ CUMPLEAÑOS MI AMOR HERMOSO! 🎉";
                     createConfetti();
                     createHearts();
                     
                     setTimeout(() => {
-                        birthdayMessage.style.display = 'block';
-                        birthdayMessage.classList.add('fade-in');
+                        // Ocultar pantalla de carga
+                        loadingScreen.style.opacity = '0';
+                        setTimeout(() => {
+                            loadingScreen.style.display = 'none';
+                            // Mostrar mensaje de cumpleaños
+                            birthdayMessage.style.display = 'block';
+                            birthdayMessage.classList.add('fade-in');
+                        }, 1000);
                     }, 2000);
                     return;
                 }
